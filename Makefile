@@ -11,13 +11,13 @@ OBJFILES = $(SRCFILES:.c=.o)
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))
 SRCOBJ = $(addprefix $(OBJDIR), $(OBJFILES))
 
-MLXLIB = minilibx/libmlx.a
+MLXLIB = /usr/local/lib/libmlx.a
 LIBFTLIB = libft/libft.a
 
 all: $(NAME)
 
 $(NAME): $(SRCOBJ)
-	$(MAKE) -C minilibx
+	#$(MAKE) -C minilibx
 	$(MAKE) -C libft
 	gcc -o so_long $(MLXFLAGS) $^ $(MLXLIB) $(LIBFTLIB)
 
