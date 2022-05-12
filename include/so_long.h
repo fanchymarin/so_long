@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/11 17:12:14 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:09:25 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@
 # include "../libft/libft.h"
 # include <mlx.h>
 
-
-char	*concat_str(char *memory, char *buf);
-char	**check_map(char *map);
-void	free_dp(char **line);
-
-typedef struct s_check
+typedef struct s_map
 {
 	int	e;
 	int	p;
 	int	c;
-}	t_check;
+	int	height;
+	int	width;
+
+}	t_map;
+
+char	*concat_str(char *memory, char *buf);
+t_map	check_map(char *map, char **line);
+void	free_dp(char **line);
 
 #endif

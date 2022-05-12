@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:58:35 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/11 13:39:57 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:13:26 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	map_error_handling(int error)
 	else if (error == 2)
 		printf("Needed at least one of each characters: (E), (C), (P).\n");
 	else if (error == 3)
-		printf("Only one initial position (P) allowed.\n");
-	else if (error == 4)
 		printf("Map needs to be rectangular\n");
 	exit(1);
 }
@@ -46,28 +44,41 @@ int	calculate_size(char **line, int which)
 	return (size);
 }
 
-void	check_characters(char *map)
+void	check_characters(char *map, t_map *stats)
 {
-	t_check	check;
-
-	check = (t_check){0, 0, 0};
+	*stats = (t_map){.e = 0, .p = 0, .c = 0};
 	while (*map)
 	{
 		if (*map != '1' && *map != '0' && *map != 'C'
 			&& *map != 'E' && *map != 'P' && *map != '\n')
 			map_error_handling(0);
 		if (*map == 'E')
-			check.e++;
+			stats->e++;
 		else if (*map == 'C')
-			check.c++;
+			stats->c++;
 		else if (*map == 'P')
-			check.p++;
+			stats->p++;
 		++map;
 	}
-	if (!check.p || !check.c || !check.e)
+	if (!stats->p || !stats->c || !stats->e)
 		map_error_handling(2);
-	if (check.p > 1)
-		map_error_handling(3);
+}
+
+void	check_rectangular(char **line, int width)
+{
+	int	i;
+	int	i2;
+
+	i = 1;
+	while (line[i])
+	{
+		i2 = 0;
+		while (line[i][i2])
+			++i2;
+		if (i2 != width)
+			map_error_handling(3);
+		i++;
+	}
 }
 
 void	check_walls(char **line, int height, int width)
@@ -90,19 +101,15 @@ void	check_walls(char **line, int height, int width)
 	}
 }
 
-char	**check_map(char *map)
+t_map	check_map(char *map, char **line)
 {
-	char	**line;
-	int		height;
-	int		width;
+	t_map	stats;
 
-	check_characters(map);
-	line = ft_split(map, '\n');
-	height = calculate_size(line, 1);
-	width = calculate_size(line, 0);
-	if (height > width)
-		map_error_handling(4);
-	check_walls(line, height - 1, width - 1);
+	check_characters(map, &stats);
+	stats.height = calculate_size(line, 1);
+	stats.width = calculate_size(line, 0);
+	check_rectangular(line, stats.width);
+	check_walls(line, stats.height - 1, stats.width - 1);
 	free(map);
-	return (line);
+	return (stats);
 }

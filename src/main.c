@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:43:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/11 15:22:52 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:02:09 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ char	*read_map(char *file)
 	return (map);
 }
 
-void	mlx_use(char **line)
+void	mlx_use(char **line, t_map stats)
 {
 	void	*mlx;
 	void	*win_mlx;
 
 	(void) line;
+	(void) stats;
 	mlx = mlx_init();
 	win_mlx = mlx_new_window(mlx, 1024, 768, "so_long");
 	if (!mlx || !win_mlx)
@@ -73,14 +74,16 @@ int	main(int argc, char **argv)
 {
 	char	*map;
 	char	**line;
+	t_map	stats;
 
 	if (argc != 2)
 		error_handling(0);
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 		error_handling(3);
 	map = read_map(argv[1]);
-	line = check_map(map);
-	mlx_use(line);
+	line = ft_split(map, '\n');
+	stats = check_map(map, line);
+	mlx_use(line, stats);
 	free_dp(line);
 	//system("leaks so_long");
 	return (0);

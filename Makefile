@@ -17,7 +17,6 @@ LIBFTLIB = libft/libft.a
 all: $(NAME)
 
 $(NAME): $(SRCOBJ)
-	#$(MAKE) -C minilibx
 	$(MAKE) -C libft
 	gcc -o so_long $(MLXFLAGS) $^ $(MLXLIB) $(LIBFTLIB)
 
@@ -26,12 +25,9 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 	gcc -c $(CFLAGS) $< -o $@ 
 
 clean:
-	$(MAKE) clean -C minilibx
-	$(MAKE) clean -C libft
 	rm -rf $(OBJDIR)
 
 fclean:
-	$(MAKE) clean -C minilibx
 	$(MAKE) fclean -C libft
 	rm -rf $(OBJDIR)
 	rm -f $(NAME)
