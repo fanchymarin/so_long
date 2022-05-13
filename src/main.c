@@ -81,6 +81,7 @@ int	main(int argc, char **argv)
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 		error_handling(3);
 	map = read_map(argv[1]);
+	ft_strlen(map);
 	line = ft_split(map, '\n');
 	stats = check_map(map, line);
 	mlx_use(line, stats);
