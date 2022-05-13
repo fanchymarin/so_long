@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <mlx.h>
-
+#define PIXEL_SIZE 125
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
@@ -23,13 +23,6 @@ typedef struct	s_data {
 
 }				t_data;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
 
 int	main(void)
 {
@@ -38,8 +31,14 @@ int	main(void)
 	t_data	img;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_xpm_file_to_image(mlx, "prueba.xpm", &img.width, &img.height);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_win = mlx_new_window(mlx, PIXEL_SIZE * 5, 600, "Hello world!");
+	img.img = mlx_xpm_file_to_image(mlx, "../sprites/0.xpm", &img.width, &img.height);
+	int	x = 0;
+	int	i = 5;
+	while (i--)
+	{
+		mlx_put_image_to_window(mlx, mlx_win, img.img, x, 0);
+		x += PIXEL_SIZE;
+		}
 	mlx_loop(mlx);
 }
