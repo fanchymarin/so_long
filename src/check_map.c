@@ -6,25 +6,11 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:58:35 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/12 14:13:26 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/14 17:31:37 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	map_error_handling(int error)
-{
-	printf("Error\n");
-	if (!error)
-		printf("Invalid characters in file.\n");
-	else if (error == 1)
-		printf("Walls (1) not closing the map.\n");
-	else if (error == 2)
-		printf("Needed at least one of each characters: (E), (C), (P).\n");
-	else if (error == 3)
-		printf("Map needs to be rectangular\n");
-	exit(1);
-}
 
 int	calculate_size(char **line, int which)
 {

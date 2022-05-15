@@ -2,9 +2,8 @@ NAME = so_long
 CFLAGS = -Wall -Wextra -Werror -Iinclude -O3
 UNAME = $(shell uname)
 
-ifeq ($(UNAME), MacOS)
-	MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
-endif
+MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
+
 ifeq ($(UNAME), Linux)
 	MLXFLAGS = -lmlx -lXext -lX11 -lm -lbsd
 endif
@@ -12,7 +11,7 @@ endif
 SRCDIR = src/
 OBJDIR = obj/
 
-SRCFILES = main.c check_map.c utils.c
+SRCFILES = main.c check_map.c utils.c render_map.c
 OBJFILES = $(SRCFILES:.c=.o)
 
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))
@@ -27,7 +26,7 @@ $(NAME): $(SRCOBJ)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	mkdir -p obj
-	gcc -c $(CFLAGS) $< -o $@ 
+	gcc -g -c $(CFLAGS) $< -o $@ 
 
 clean:
 	rm -rf $(OBJDIR)

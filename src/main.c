@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:43:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/12 15:02:09 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/14 17:36:59 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ void	error_handling(int error)
 		printf("File not valid. Extension .ber required.\n");
 	else if (error == 4)
 		printf("Minilibx failed.\n");
+	exit(1);
+}
+
+void	map_error_handling(int error)
+{
+	printf("Error\n");
+	if (!error)
+		printf("Invalid characters in file.\n");
+	else if (error == 1)
+		printf("Walls (1) not closing the map.\n");
+	else if (error == 2)
+		printf("Needed at least one of each characters: (E), (C), (P).\n");
+	else if (error == 3)
+		printf("Map needs to be rectangular\n");
 	exit(1);
 }
 
@@ -54,20 +68,6 @@ char	*read_map(char *file)
 	free(buf);
 	close(fd);
 	return (map);
-}
-
-void	mlx_use(char **line, t_map stats)
-{
-	void	*mlx;
-	void	*win_mlx;
-
-	(void) line;
-	(void) stats;
-	mlx = mlx_init();
-	win_mlx = mlx_new_window(mlx, 1024, 768, "so_long");
-	if (!mlx || !win_mlx)
-		error_handling(4);
-	mlx_loop(mlx);
 }
 
 int	main(int argc, char **argv)
