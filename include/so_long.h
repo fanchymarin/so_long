@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/15 19:59:39 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/17 19:40:44 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ struct s_images
 	void	*r1;
 	void	*r2;
 	void	*r3;
-	void	*downleft_c;
-	void	*downright_c;
-	void	*upleft_c;
-	void	*upright_c;
-	void	*down_w;
-	void	*left_w;
-	void	*right_w;
-	void	*up_w;
+	void	*dl_c;
+	void	*dr_c;
+	void	*ul_c;
+	void	*ur_c;
+	void	*d_w;
+	void	*l_w;
+	void	*r_w;
+	void	*u_w;
 };
 
 typedef struct s_mlx
@@ -67,5 +67,6 @@ void	free_dp(char **line);
 void	map_error_handling(int error);
 void	mlx_use(char **line, t_map stats);
 void	error_handling(int error);
+int		rand(void);
 
 #endif
