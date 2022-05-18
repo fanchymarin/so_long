@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/17 19:40:44 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:01:58 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../libft/libft.h"
 # include <mlx.h>
 
-#define PSIZE 32
+#define PSIZE 64
 
 typedef struct s_map
 {
