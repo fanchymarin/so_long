@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/18 13:01:58 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/19 15:14:43 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../libft/libft.h"
 # include <mlx.h>
 
-#define PSIZE 64
+# define PSIZE 64
 
 typedef struct s_map
 {
@@ -67,6 +67,8 @@ void	free_dp(char **line);
 void	map_error_handling(int error);
 void	mlx_use(char **line, t_map stats);
 void	error_handling(int error);
-int		rand(void);
+int		ft_rand(void);
+void	mlx_load_images(void *mlx, struct s_images *images);
+void	mlx_load_sprites(void *mlx, t_list **collect, t_list **exit);
 
 #endif

@@ -1,9 +1,8 @@
 NAME = so_long
-CFLAGS = -Wall -Wextra -Werror -Iinclude -O3
+CFLAGS = -Wall -Wextra -Werror -Iinclude -Iminilibx -O3
+MLXFLAGS = -Lminilibx -lmlx -framework OpenGL -framework AppKit
+
 UNAME = $(shell uname)
-
-MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
-
 ifeq ($(UNAME), Linux)
 	MLXFLAGS = -lmlx -lXext -lX11 -lm -lbsd
 endif
@@ -11,7 +10,7 @@ endif
 SRCDIR = src/
 OBJDIR = obj/
 
-SRCFILES = main.c check_map.c utils.c render_map.c
+SRCFILES = main.c check_map.c utils.c render_map.c load_assets.c
 OBJFILES = $(SRCFILES:.c=.o)
 
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))
@@ -22,7 +21,7 @@ LIBFTLIB = -Llibft -lft
 all: $(NAME)
 
 $(NAME): $(SRCOBJ)
-	$(MAKE) -C libft
+	$(MAKE) bonus -C libft
 	$(MAKE) clean -C libft
 	gcc -o so_long $^ $(LIBFTLIB) $(MLXFLAGS) 
 

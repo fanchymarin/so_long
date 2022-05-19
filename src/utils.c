@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:09:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/14 17:33:26 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:51:01 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	free_dp(char **line)
 	free(line);
 }
 
-int	rand(void)
+int	ft_rand(void)
 {
-	static int	next = 1;
+	static unsigned long int	next = 1;
 
 	next = next * 1103515245 + 12345;
 	return ((unsigned int)(next / 65536) % 32768);

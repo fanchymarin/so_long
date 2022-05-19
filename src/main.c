@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:43:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/14 17:36:59 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:20:19 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ int	main(int argc, char **argv)
 	stats = check_map(map, line);
 	mlx_use(line, stats);
 	free_dp(line);
-	//system("leaks so_long");
 	return (0);
 }
