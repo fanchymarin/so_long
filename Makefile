@@ -22,6 +22,8 @@ LIBFTLIB = -Llibft -lft
 all: $(NAME)
 
 $(NAME): $(SRCOBJ)
+	$(MAKE) -C libft
+	$(MAKE) clean -C libft
 	gcc -o so_long $^ $(LIBFTLIB) $(MLXFLAGS) 
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
@@ -32,6 +34,7 @@ clean:
 	rm -rf $(OBJDIR)
 
 fclean: clean
+	$(MAKE) fclean -C libft
 	rm -f $(NAME)
 
 re: fclean all
