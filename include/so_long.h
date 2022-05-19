@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/19 15:14:43 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:36:20 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@ typedef struct s_mlx
 	void			*mlx;
 	void			*mlx_win;
 	struct s_images	images;
+	t_list			**player;
+	int				p_x;
+	int				p_y;
+	t_list			**collect;
+	int				c_x;
+	int				c_y;
+	t_list			**exit;
+	int				e_x;
+	int				e_y;
 }	t_mlx;
 
 char	*concat_str(char *memory, char *buf);

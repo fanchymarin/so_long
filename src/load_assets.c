@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:21:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/19 15:21:49 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/19 19:48:15 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,22 @@ void	mlx_load_sprites(void *mlx, t_list **collect, t_list **exit)
 	int	a;
 	int	b;
 
-	(void) exit;
-	collect = (t_list **) malloc(sizeof(t_list *));
-	ft_lstadd_back(collect, ft_lstnew(mlx_xpm_file_to_image(mlx,
-					"./assets/c/c1.xpm", &a, &b)));
-	ft_lstadd_back(collect, ft_lstnew(mlx_xpm_file_to_image(mlx,
-					"./assets/c/c2.xpm", &a, &b)));
-	ft_lstadd_back(collect, ft_lstnew(mlx_xpm_file_to_image(mlx,
-					"./assets/c/c3.xpm", &a, &b)));
-	ft_lstadd_back(collect, ft_lstnew(mlx_xpm_file_to_image(mlx,
-					"./assets/c/c2.xpm", &a, &b)));
-	ft_lstadd_back(collect, ft_lstnew(mlx_xpm_file_to_image(mlx,
-					"./assets/c/c1.xpm", &a, &b)));
+	*exit = 0;
+	*collect = 0;
+	ft_lstadd_back(collect,
+		ft_lstnew(mlx_xpm_file_to_image(mlx, "./assets/c/c1.xpm", &a, &b)));
+	ft_lstadd_back(collect,
+		ft_lstnew(mlx_xpm_file_to_image(mlx, "./assets/c/c2.xpm", &a, &b)));
+	ft_lstadd_back(collect,
+		ft_lstnew(mlx_xpm_file_to_image(mlx, "./assets/c/c3.xpm", &a, &b)));
+	ft_lstadd_back(collect,
+		ft_lstnew(mlx_xpm_file_to_image(mlx, "./assets/c/c2.xpm", &a, &b)));
+	ft_lstadd_back(collect,
+		ft_lstnew(mlx_xpm_file_to_image(mlx, "./assets/c/c1.xpm", &a, &b)));
+	ft_lstadd_back(exit,
+		ft_lstnew(mlx_xpm_file_to_image(mlx, "./assets/e/e.xpm", &a, &b)));
+	ft_lstadd_back(exit,
+		ft_lstnew(mlx_xpm_file_to_image(mlx, "./assets/e/e1.xpm", &a, &b)));
+	ft_lstadd_back(exit,
+		ft_lstnew(mlx_xpm_file_to_image(mlx, "./assets/e/e2.xpm", &a, &b)));
 }

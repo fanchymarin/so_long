@@ -23,6 +23,7 @@ all: $(NAME)
 $(NAME): $(SRCOBJ)
 	$(MAKE) bonus -C libft
 	$(MAKE) clean -C libft
+	$(MAKE) -C minilibx
 	gcc -o so_long $^ $(LIBFTLIB) $(MLXFLAGS) 
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
@@ -33,6 +34,7 @@ clean:
 	rm -rf $(OBJDIR)
 
 fclean: clean
+	$(MAKE) clean -C minilibx
 	$(MAKE) fclean -C libft
 	rm -f $(NAME)
 

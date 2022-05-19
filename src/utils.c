@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:09:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/19 12:51:01 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/19 19:57:53 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,9 @@ int	ft_rand(void)
 
 	next = next * 1103515245 + 12345;
 	return ((unsigned int)(next / 65536) % 32768);
+}
+
+t_list	**sprite(void)
+{
+	return ((t_list **) malloc(sizeof(t_list *)));
 }
