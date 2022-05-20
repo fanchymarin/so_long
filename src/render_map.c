@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:35:49 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/19 20:54:04 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/20 19:37:05 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,66 +96,51 @@ void	mlx_render_rocks(t_mlx *mlx, char **line, int x, int y)
 	}
 }
 
-int	animate_c(t_mlx *mlx)
+void	mlx_render_sprites(t_mlx *mlx, char **line, int x, int y)
 {
-	static	t_list	*start = 0;
+	int	c;
+	int	e;
+	int	p;
 
-	usleep(70000);
-	if (!start)
-		start = (*mlx->collect);
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-		start->content, mlx->c_x * PSIZE, mlx->c_y * PSIZE);
-	start = start->next;
-	return (0);
-}
-
-void	mlx_render_sprites(t_mlx *mlx, char **line)
-{
-	int	x;
-	int	y;
-
-	x = 1;
-	y = 1;
+	c = 0;
+	e = 0;
+	p = 0;
 	while (line[y + 1])
 	{
 		x = 1;
 		while (line[y + 1][x + 1])
 		{
 			if (line[y][x] == 'C')
-			{
-				mlx->c_x = x;
-				mlx->c_y = y;
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-					(**mlx->collect).content, x * PSIZE, y * PSIZE);
-			}
+				save_pos(&mlx->c_pos[c++], x, y);
 			else if (line[y][x] == 'E')
+				save_pos(&mlx->e_pos[e++], x, y);
+			else if (line[y][x] == 'P')
+			{
+				save_pos(&mlx->p_pos[p++], x, y);
 				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-					(**mlx->exit).content, x * PSIZE, y * PSIZE);
+						(**mlx->player[0]).content, x * PSIZE, y * PSIZE);
+			}
 			++x;
 		}
 		++y;
 	}
-	mlx_loop_hook(mlx->mlx, animate_c, mlx);
 }
 
-void	mlx_use(char **line, t_map stats)
+void	mlx_use(char **line, t_mlx *mlx)
 {
-	t_mlx		mlx;
-
-	mlx = (t_mlx){.player = malloc(sizeof(t_list *)),
-		.collect = malloc(sizeof(t_list *)),
-		.exit = malloc(sizeof(t_list *))};
-	mlx.mlx = mlx_init();
-	mlx.mlx_win = mlx_new_window(mlx.mlx, PSIZE * stats.width,
-			PSIZE * (stats.height + 1), "so_long");
-	if (!mlx.mlx || !mlx.mlx_win)
+	mlx->mlx = mlx_init();
+	mlx->mlx_win = mlx_new_window(mlx->mlx, PSIZE * mlx->stats.width,
+			PSIZE * (mlx->stats.height + 1), "so_long");
+	if (!mlx->mlx || !mlx->mlx_win)
 		error_handling(4);
-	mlx_mouse_hide();
-	mlx_load_images(mlx.mlx, &mlx.images);
-	mlx_load_sprites(mlx.mlx, mlx.collect, mlx.exit);
-	mlx_render_floor(&mlx, stats.width, stats.height);
-	mlx_render_walls(&mlx, stats.width - 1, stats.height - 1, PSIZE);
-	mlx_render_rocks(&mlx, line, 1, 1);
-	mlx_render_sprites(&mlx, line);
-	mlx_loop(mlx.mlx);
+	malloc_sprites(mlx);
+	mlx_load_images(mlx->mlx, &mlx->images);
+	mlx_load_sprites(mlx, mlx->collect, mlx->exit);
+	mlx_load_player(mlx, mlx->player);
+	mlx_render_floor(mlx, mlx->stats.width, mlx->stats.height);
+	mlx_render_walls(mlx, mlx->stats.width - 1, mlx->stats.height - 1, PSIZE);
+	mlx_render_rocks(mlx, line, 1, 1);
+	mlx_render_sprites(mlx, line, 1, 1);
+	mlx_loop_hook(mlx->mlx, animate_sprites, mlx);
+	mlx_loop(mlx->mlx);
 }

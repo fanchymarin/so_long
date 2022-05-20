@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:09:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/19 19:57:53 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/20 18:14:41 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	ft_rand(void)
 	return ((unsigned int)(next / 65536) % 32768);
 }
 
-t_list	**sprite(void)
+void	save_pos(struct s_pos *pos, int x, int y)
 {
-	return ((t_list **) malloc(sizeof(t_list *)));
+	pos->x = x;
+	pos->y = y;
 }

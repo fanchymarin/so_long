@@ -10,7 +10,7 @@ endif
 SRCDIR = src/
 OBJDIR = obj/
 
-SRCFILES = main.c check_map.c utils.c render_map.c load_assets.c
+SRCFILES = main.c check_map.c utils.c render_map.c load_assets.c hook_handlers.c
 OBJFILES = $(SRCFILES:.c=.o)
 
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))
