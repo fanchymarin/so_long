@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:43:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/20 17:23:25 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/21 12:29:34 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ char	*read_map(char *file)
 int	main(int argc, char **argv)
 {
 	char	*map;
-	char	**line;
 	t_mlx	mlx;
 
 	if (argc != 2)
@@ -81,10 +80,9 @@ int	main(int argc, char **argv)
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 		error_handling(3);
 	map = read_map(argv[1]);
-	line = ft_split(map, '\n');
-	mlx.stats = check_map(map, line);
-	mlx_use(line, &mlx);
-	free_dp(line);
-	system("leaks so_long");
+	mlx.line = ft_split(map, '\n');
+	mlx.stats = check_map(map, mlx.line);
+	mlx_use(mlx.line, &mlx);
+	free_dp(mlx.line);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:09:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/20 18:14:41 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/21 13:14:45 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,29 @@ void	save_pos(struct s_pos *pos, int x, int y)
 {
 	pos->x = x;
 	pos->y = y;
+}
+
+void	store_f_pos(t_mlx *mlx, int x, int y, int id)
+{
+	int	i;
+
+	if (!mlx->f_pos)
+	{
+		i = 0;
+		mlx->f_pos = (char **) ft_calloc(sizeof(char *),
+				(mlx->stats.height + 1));
+		while (i < mlx->stats.height)
+			mlx->f_pos[i++] = (char *) ft_calloc(sizeof(char),
+					(mlx->stats.width + 1));
+	}
+	if (id == 1)
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
+			mlx->images.f1, x * PSIZE, y * PSIZE);
+	else if (id == 2)
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
+			mlx->images.f2, x * PSIZE, y * PSIZE);
+	else if (id == 3)
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
+			mlx->images.f3, x * PSIZE, y * PSIZE);
+	mlx->f_pos[y][x] = id;
 }

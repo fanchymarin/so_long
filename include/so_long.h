@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/20 18:49:58 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/21 13:13:09 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_mlx
 {
 	void			*mlx;
 	void			*mlx_win;
+	char			**line;
 	t_map			stats;
 	struct s_images	images;
 	t_list			***player;
@@ -72,6 +73,7 @@ typedef struct s_mlx
 	struct s_pos	*c_pos;
 	t_list			**exit;
 	struct s_pos	*e_pos;
+	char			**f_pos;
 
 }	t_mlx;
 
@@ -88,5 +90,7 @@ int		animate_sprites(t_mlx *mlx);
 void	save_pos(struct s_pos *pos, int x, int y);
 void	malloc_sprites(t_mlx *mlx);
 void	mlx_load_player(t_mlx *mlx, t_list ***player);
+void	store_f_pos(t_mlx *mlx, int x, int y, int id);
+void	*ret_f(t_mlx *mlx, int x, int y);
 
 #endif

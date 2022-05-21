@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:35:49 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/20 19:37:05 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/21 13:04:49 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,22 @@ void	mlx_render_floor(t_mlx *mlx, int width, int height)
 	int	y;
 	int	r;
 
-	y = PSIZE;
-	while (y / PSIZE <= height - 2)
+	y = 1;
+	while (y <= height - 2)
 	{
 		x = 0;
-		while (x / PSIZE <= width)
+		while (x <= width - 1)
 		{
 			r = ft_rand();
 			if (r % 2 == 0)
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-					mlx->images.f1, x, y);
+				store_f_pos(mlx, x, y, 1);
 			else if (r % 3 == 0)
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-					mlx->images.f3, x, y);
+				store_f_pos(mlx, x, y, 3);
 			else
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-					mlx->images.f2, x, y);
-			x += PSIZE;
+				store_f_pos(mlx, x, y, 2);
+			x++;
 		}
-		y += PSIZE;
+		y++;
 	}
 }
 
@@ -98,27 +95,25 @@ void	mlx_render_rocks(t_mlx *mlx, char **line, int x, int y)
 
 void	mlx_render_sprites(t_mlx *mlx, char **line, int x, int y)
 {
-	int	c;
-	int	e;
-	int	p;
+	int	counter[3];
 
-	c = 0;
-	e = 0;
-	p = 0;
+	counter[0] = 0;
+	counter[1] = 0;
+	counter[2] = 0;
 	while (line[y + 1])
 	{
 		x = 1;
 		while (line[y + 1][x + 1])
 		{
 			if (line[y][x] == 'C')
-				save_pos(&mlx->c_pos[c++], x, y);
+				save_pos(&mlx->c_pos[counter[0]++], x, y);
 			else if (line[y][x] == 'E')
-				save_pos(&mlx->e_pos[e++], x, y);
+				save_pos(&mlx->e_pos[counter[1]++], x, y);
 			else if (line[y][x] == 'P')
 			{
-				save_pos(&mlx->p_pos[p++], x, y);
+				save_pos(&mlx->p_pos[counter[2]++], x, y);
 				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-						(**mlx->player[0]).content, x * PSIZE, y * PSIZE);
+					(**mlx->player[0]).content, x * PSIZE, y * PSIZE);
 			}
 			++x;
 		}

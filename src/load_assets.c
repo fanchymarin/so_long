@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:21:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/20 19:15:21 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/21 12:43:08 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	mlx_load_player(t_mlx *mlx, t_list ***player)
 		while (path[12] <= '3')
 		{
 			ft_lstadd_back(player[i], ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
-				path, &a, &b)));
+						path, &a, &b)));
 			path[12]++;
 		}
 		path[11] = *(p++);

@@ -10,7 +10,7 @@ endif
 SRCDIR = src/
 OBJDIR = obj/
 
-SRCFILES = main.c check_map.c utils.c render_map.c load_assets.c hook_handlers.c
+SRCFILES = main.c check_map.c utils.c utils2.c render_map.c load_assets.c hook_handlers.c
 OBJFILES = $(SRCFILES:.c=.o)
 
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))
@@ -23,7 +23,9 @@ all: $(NAME)
 $(NAME): $(SRCOBJ)
 	$(MAKE) bonus -C libft
 	$(MAKE) clean -C libft
+ifeq ($(UNAME), MacOS)
 	$(MAKE) -C minilibx
+endif
 	gcc -o so_long $^ $(LIBFTLIB) $(MLXFLAGS) 
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
