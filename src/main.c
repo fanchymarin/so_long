@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:43:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/21 12:29:34 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/21 20:35:06 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*read_map(char *file)
 	if (fd == -1)
 		error_handling(1);
 	map = (char *) ft_calloc(sizeof(char), 1);
-	buf = (char *) ft_calloc(sizeof(char), 100);
+	buf = (char *) ft_calloc(sizeof(char), 101);
 	if (!map || !buf)
 		error_handling(2);
 	while (1)
