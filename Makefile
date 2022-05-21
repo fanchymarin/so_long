@@ -23,7 +23,7 @@ all: $(NAME)
 $(NAME): $(SRCOBJ)
 	$(MAKE) bonus -C libft
 	$(MAKE) clean -C libft
-ifeq ($(UNAME), MacOS)
+ifeq ($(UNAME), Darwin)
 	$(MAKE) -C minilibx
 endif
 	gcc -o so_long $^ $(LIBFTLIB) $(MLXFLAGS) 
