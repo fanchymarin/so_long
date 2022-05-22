@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/22 18:11:29 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/22 20:10:02 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void	mlx_load_player(t_mlx *mlx, t_list ***player);
 void	store_f_pos(t_mlx *mlx, int x, int y, int id);
 void	*ret_f(t_mlx *mlx, int x, int y);
 int		key_hook(int key, t_mlx *mlx);
+int		animate_sprites(t_mlx *mlx);
 
 #endif
