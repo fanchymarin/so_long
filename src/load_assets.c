@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:21:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/21 12:43:08 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/22 13:16:18 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	mlx_load_player(t_mlx *mlx, t_list ***player)
 	int		i;
 
 	i = 0;
-	p = "lru ";
+	p = "lur ";
 	path = ft_strdup("./assets/p/d1.xpm");
 	while (*p)
 	{

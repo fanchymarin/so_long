@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/21 13:13:09 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/22 18:11:29 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef struct s_mlx
 	t_list			**exit;
 	struct s_pos	*e_pos;
 	char			**f_pos;
-
 }	t_mlx;
 
 char	*concat_str(char *memory, char *buf);
@@ -92,5 +91,6 @@ void	malloc_sprites(t_mlx *mlx);
 void	mlx_load_player(t_mlx *mlx, t_list ***player);
 void	store_f_pos(t_mlx *mlx, int x, int y, int id);
 void	*ret_f(t_mlx *mlx, int x, int y);
+int		key_hook(int key, t_mlx *mlx);
 
 #endif
