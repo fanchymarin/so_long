@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/22 20:15:11 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/23 21:35:01 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,48 +58,61 @@ void	animate_e(t_mlx *mlx)
 	exit = exit->next;
 }
 
-void	stat_player(t_mlx *mlx, t_list **sprite, int n_x, int n_y)
+void	move_player(t_mlx *mlx, t_list **sprite, t_pos pos, t_pos new_pos)
 {
-	int	i;
-	int	rel_pos;
-	int	x;
-	int	y;
+	int			pixel_mov;
 	static int	speed = 500;
-	t_list	*image;
+	t_list		*image;
+
+	pixel_mov = 1;
+	image = *sprite;
+	while (pixel_mov <= PSIZE)
+	{
+		if (!image)
+			image = *sprite;
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
+			ret_f(mlx, pos.x, pos.y), pos.x * PSIZE, pos.y * PSIZE);
+		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
+			ret_f(mlx, pos.x + new_pos.x, pos.y + new_pos.y),
+			pos.x + new_pos.x * PSIZE, pos.y + new_pos.y * PSIZE);
+		if (new_pos.x)
+			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
+				image->content, (pos.x * PSIZE) + pixel_mov, pos.y * PSIZE);
+		else
+			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
+				image->content, pos.x * PSIZE, (pos.y * PSIZE) + pixel_mov);
+		if (!speed--)
+		{
+			pixel_mov++;
+			image = image->next;
+			speed = 500;
+		}
+	}
+}
+
+void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
+{
+	int			i;
+	int			x;
+	int			y;
 
 	i = 0;
 	while (i < mlx->stats.p)
 	{
-		image = *sprite;
 		x = mlx->p_pos[i].x;
 		y = mlx->p_pos[i].y;
 		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, ret_f(mlx, x, y),
 			x * PSIZE, y * PSIZE);
 		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-			image->content, x * PSIZE, y * PSIZE);
-		if (mlx->line[y + next_y][x + next_x] != '1')
+			(*sprite)->content, x * PSIZE, y * PSIZE);
+		if (mlx->line[y + new_pos.y][x + new_pos.x] != '1')
 		{
-			rel_pos = 1;
-			while (rel_pos <= PSIZE)
-			{
-				if (!image)
-					image = *sprite;
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-					ret_f(mlx, x, y), x * PSIZE, y * PSIZE);
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-					ret_f(mlx, next_x, next_y), next_x * PSIZE, next_y * PSIZE);
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-					image->content, (x * PSIZE) + rel_pos, y * PSIZE);
-				if (!speed--)
-				{
-					rel_pos++;
-					image = image->next;
-					speed = 500;
-				}
-			}
-		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-			(**sprite).content, next_x * PSIZE, next_y * PSIZE);
-		mlx->p_pos[i].x++;
+			move_player(mlx, sprite, *mlx->p_pos, new_pos);
+			mlx->p_pos[i].x += new_pos.x;
+			mlx->p_pos[i].y += new_pos.y;
+			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
+				(**sprite).content, mlx->p_pos[i].x * PSIZE,
+				mlx->p_pos[i].y * PSIZE);
 		}
 		++i;
 	}	
@@ -107,13 +120,27 @@ void	stat_player(t_mlx *mlx, t_list **sprite, int n_x, int n_y)
 
 int	key_hook(int key, t_mlx *mlx)
 {
+	t_pos	new_pos;
+
 	if (key == KEY_S)
-		stat_player(mlx, mlx->player[0], 0, 1);
+	{
+		new_pos = (t_pos){0, 1};
+		stat_player(mlx, mlx->player[0], new_pos);
+	}
 	else if (key == KEY_A)
-		stat_player(mlx, mlx->player[1], -1, 0);
+	{
+		new_pos = (t_pos){-1, 0};
+		stat_player(mlx, mlx->player[1], new_pos);
+	}
 	else if (key == KEY_W)
-		stat_player(mlx, mlx->player[2], 0, -1);
+	{
+		new_pos = (t_pos){0, -1};
+		stat_player(mlx, mlx->player[2], new_pos);
+	}
 	else if (key == KEY_D)
-		stat_player(mlx, mlx->player[3], 1, 0);
+	{
+		new_pos = (t_pos){1, 0};
+		stat_player(mlx, mlx->player[3], new_pos);
+	}
 	return (0);
 }

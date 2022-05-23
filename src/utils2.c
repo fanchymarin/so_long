@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 13:14:14 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/22 20:09:39 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:40:24 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	*ret_f(t_mlx *mlx, int x, int y)
 	else
 		return (mlx->images.f3);
 }
-
 
 int	animate_sprites(t_mlx *mlx)
 {

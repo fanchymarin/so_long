@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/22 20:10:02 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/23 21:17:00 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ struct s_images
 	void	*u_w;
 };
 
-struct s_pos
+typedef struct s_pos
 {
 	int	x;
 	int	y;
-};
+}	t_pos;
 
 typedef struct s_mlx
 {
@@ -93,5 +93,7 @@ void	store_f_pos(t_mlx *mlx, int x, int y, int id);
 void	*ret_f(t_mlx *mlx, int x, int y);
 int		key_hook(int key, t_mlx *mlx);
 int		animate_sprites(t_mlx *mlx);
+void	animate_e(t_mlx *mlx);
+void	animate_c(t_mlx *mlx);
 
 #endif
