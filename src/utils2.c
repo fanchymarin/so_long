@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 13:14:14 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/25 19:07:34 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/26 01:06:07 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	stop_hook(t_mlx *mlx)
 		check += mlx->p_pos[i++].pixel_mov;
 	if (!check)
 		mlx->mov = 0;
+	else
+		mlx->counter++;
+	if (mlx->counter % (PSIZE - 1) == 0)
+		printf("%d\n", mlx->counter / (PSIZE - 1));
 }
 
 int	animate_sprites(t_mlx *mlx)

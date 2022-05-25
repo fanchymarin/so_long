@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/25 19:05:42 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/26 00:59:36 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	animate_c(t_mlx *mlx)
 {
 	static t_list	*collect = 0;
-	static int		speed = 10;
+	static int		speed = 1000;		//10 for MAC
 	int				i;
 
 	if (!collect)
@@ -30,14 +30,14 @@ void	animate_c(t_mlx *mlx)
 	if (!speed--)
 	{
 		collect = collect->next;
-		speed = 10;
+		speed = 1000;
 	}
 }
 
 void	animate_e(t_mlx *mlx)
 {
 	static t_list	*exit = 0;
-	static int		speed = 5;
+	static int		speed = 500;		//5 for MAC
 	int				i;
 
 	if (!exit)
@@ -52,29 +52,36 @@ void	animate_e(t_mlx *mlx)
 	if (!speed--)
 	{
 		exit = exit->next;
-		speed = 5;
+		speed = 500;
 	}
 }
 
 void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
 {
+	int	i;
+
+	i = 200;
 	if (!pos->image)
 		pos->image = *sprite;
-	print(mlx, 0, pos->x, pos->y);
-	print(mlx, 0, pos->x + new_pos.x, pos->y + new_pos.y);
-	if (new_pos.x)
-		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, pos->image->content,
-			(pos->x * PSIZE) + pos->pixel_mov, pos->y * PSIZE);
-	else
-		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, pos->image->content,
-			pos->x * PSIZE, (pos->y * PSIZE) + pos->pixel_mov);
+	while (i--)
+	{
+		print(mlx, 0, pos->x, pos->y);
+		print(mlx, 0, pos->x + new_pos.x, pos->y + new_pos.y);
+		if (new_pos.x)
+			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, pos->image->content,
+				(pos->x * PSIZE) + pos->pixel_mov, pos->y * PSIZE);
+		else
+			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, pos->image->content,
+				pos->x * PSIZE, (pos->y * PSIZE) + pos->pixel_mov);
+	}
+	i = 200;
 	if (new_pos.x == 1 || new_pos.y == 1)
-		pos->pixel_mov += 2;
+		pos->pixel_mov++;
 	else
-		pos->pixel_mov -= 2;
+		pos->pixel_mov--;
 	if (pos->pixel_mov % 4 == 0)
 		pos->image = pos->image->next;
-	if (pos->pixel_mov == PSIZE || pos->pixel_mov == (PSIZE * -1))
+	if (pos->pixel_mov == PSIZE + 1 || pos->pixel_mov == ((PSIZE + 1) * -1))
 	{
 		pos->pixel_mov = 0;
 		mlx->mov = 0;
