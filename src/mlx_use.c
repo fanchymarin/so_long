@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:35:49 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/22 18:11:56 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:00:04 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,11 @@ void	mlx_render_rocks(t_mlx *mlx, char **line, int x, int y)
 			{
 				r = ft_rand();
 				if (r % 2 == 0)
-					mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-						mlx->images.r1, x * PSIZE, y * PSIZE);
+					print(mlx, mlx->images.r1, x, y);
 				else if (r % 3 == 0)
-					mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-						mlx->images.r2, x * PSIZE, y * PSIZE);
+					print(mlx, mlx->images.r2, x, y);
 				else
-					mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-						mlx->images.r3, x * PSIZE, y * PSIZE);
+					print(mlx, mlx->images.r3, x, y);
 			}
 			++x;
 		}
@@ -112,8 +109,7 @@ void	mlx_render_sprites(t_mlx *mlx, char **line, int x, int y)
 			else if (line[y][x] == 'P')
 			{
 				save_pos(&mlx->p_pos[counter[2]++], x, y);
-				mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-					(**mlx->player[0]).content, x * PSIZE, y * PSIZE);
+				print(mlx, (**mlx->player[0]).content, x, y);
 			}
 			++x;
 		}
@@ -136,6 +132,7 @@ void	mlx_use(char **line, t_mlx *mlx)
 	mlx_render_walls(mlx, mlx->stats.width - 1, mlx->stats.height - 1, PSIZE);
 	mlx_render_rocks(mlx, line, 1, 1);
 	mlx_render_sprites(mlx, line, 1, 1);
+	mlx->mov = 0;
 	mlx_loop_hook(mlx->mlx, animate_sprites, mlx);
 	mlx_key_hook(mlx->mlx_win, key_hook, mlx);
 	mlx_loop(mlx->mlx);

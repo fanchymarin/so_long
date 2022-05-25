@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/23 21:17:00 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:08:20 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,11 @@ struct s_images
 
 typedef struct s_pos
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	int		pixel_mov;
+	int		just_mov;
+	t_list	*image;
 }	t_pos;
 
 typedef struct s_mlx
@@ -74,6 +77,7 @@ typedef struct s_mlx
 	t_list			**exit;
 	struct s_pos	*e_pos;
 	char			**f_pos;
+	char			mov;
 }	t_mlx;
 
 char	*concat_str(char *memory, char *buf);
@@ -95,5 +99,7 @@ int		key_hook(int key, t_mlx *mlx);
 int		animate_sprites(t_mlx *mlx);
 void	animate_e(t_mlx *mlx);
 void	animate_c(t_mlx *mlx);
+void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos);
+void	print(t_mlx *mlx, void *image, int x, int y);
 
 #endif

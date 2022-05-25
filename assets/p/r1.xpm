@@ -13,7 +13,7 @@ static char *right_png[] = {
 "$ c #6799C1",
 "% c #F79696",
 "& c #F3B9B0",
-"* c None",
+"* c #ffdd8c",
 "= c #FFEFE3",
 "- c white",
 /* pixels */
