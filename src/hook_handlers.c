@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/26 00:59:36 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:36:26 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,6 @@ void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
 		pos->pixel_mov--;
 	if (pos->pixel_mov % 4 == 0)
 		pos->image = pos->image->next;
-	if (pos->pixel_mov == PSIZE + 1 || pos->pixel_mov == ((PSIZE + 1) * -1))
-	{
-		pos->pixel_mov = 0;
-		mlx->mov = 0;
-		pos->just_mov = 1;
-	}
 }
 
 void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
@@ -96,7 +90,6 @@ void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
 	i = 0;
 	while (i < mlx->stats.p)
 	{
-		mlx->p_pos[i].just_mov = 0;
 		print(mlx, 0, mlx->p_pos[i].x, mlx->p_pos[i].y);
 		print(mlx, (**sprite).content, mlx->p_pos[i].x, mlx->p_pos[i].y);
 		if (mlx->line[mlx->p_pos[i].y + new_pos.y][mlx->p_pos[i].x
@@ -104,8 +97,11 @@ void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
 			[mlx->p_pos[i].x + new_pos.x] != 'P')
 		{
 			move_player(mlx, sprite, &mlx->p_pos[i], new_pos);
-			if (mlx->p_pos[i].just_mov)
+			if (mlx->p_pos[i].pixel_mov == PSIZE + 1
+				|| mlx->p_pos[i].pixel_mov == ((PSIZE + 1) * -1))
 			{
+				mlx->p_pos[i].pixel_mov = 0;
+				mlx->mov = 0;
 				mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] = '0';
 				mlx->p_pos[i].x += new_pos.x;
 				mlx->p_pos[i].y += new_pos.y;

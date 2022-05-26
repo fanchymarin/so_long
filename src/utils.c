@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:09:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/25 19:00:04 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:33:24 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	save_pos(struct s_pos *pos, int x, int y)
 	pos->x = x;
 	pos->y = y;
 	pos->pixel_mov = 0;
-	pos->just_mov = 0;
 	pos->image = 0;
 }
 

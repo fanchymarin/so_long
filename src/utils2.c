@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 13:14:14 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/26 01:06:07 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:33:24 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	animate_sprites(t_mlx *mlx)
 	animate_c(mlx);
 	animate_e(mlx);
 	if (mlx->mov == 'S')
-		stat_player(mlx, mlx->player[0], new_pos = (t_pos){0, 1, 0, 0, 0});
+		stat_player(mlx, mlx->player[0], new_pos = (t_pos){0, 1, 0, 0});
 	else if (mlx->mov == 'A')
-		stat_player(mlx, mlx->player[1], new_pos = (t_pos){-1, 0, 0, 0, 0});
+		stat_player(mlx, mlx->player[1], new_pos = (t_pos){-1, 0, 0, 0});
 	else if (mlx->mov == 'W')
-		stat_player(mlx, mlx->player[2], new_pos = (t_pos){0, -1, 0, 0, 0});
+		stat_player(mlx, mlx->player[2], new_pos = (t_pos){0, -1, 0, 0});
 	else if (mlx->mov == 'D')
-		stat_player(mlx, mlx->player[3], new_pos = (t_pos){1, 0, 0, 0, 0});
+		stat_player(mlx, mlx->player[3], new_pos = (t_pos){1, 0, 0, 0});
 	if (mlx->mov)
 		stop_hook(mlx);
 	return (0);
