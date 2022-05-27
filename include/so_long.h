@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/26 15:32:57 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:32:55 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ void	animate_e(t_mlx *mlx);
 void	animate_c(t_mlx *mlx);
 void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos);
 void	print(t_mlx *mlx, void *image, int x, int y);
-
+void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos);
 #endif
