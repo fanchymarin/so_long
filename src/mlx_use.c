@@ -125,6 +125,7 @@ void	mlx_use(char **line, t_mlx *mlx)
 	if (!mlx->mlx || !mlx->mlx_win)
 		error_handling(4);
 	malloc_sprites(mlx);
+	struct_init(mlx);
 	mlx_load_images(mlx->mlx, &mlx->images);
 	mlx_load_sprites(mlx, mlx->collect, mlx->exit);
 	mlx_load_player(mlx, mlx->player);
@@ -132,9 +133,6 @@ void	mlx_use(char **line, t_mlx *mlx)
 	mlx_render_walls(mlx, mlx->stats.width - 1, mlx->stats.height - 1, PSIZE);
 	mlx_render_rocks(mlx, line, 1, 1);
 	mlx_render_sprites(mlx, line, 1, 1);
-	mlx->mov = 0;
-	mlx->counter = 0;
-	mlx->c_counter = mlx->stats.c;
 	mlx_loop_hook(mlx->mlx, animate_sprites, mlx);
 	mlx_key_hook(mlx->mlx_win, key_hook, mlx);
 	mlx_loop(mlx->mlx);

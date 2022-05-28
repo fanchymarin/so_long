@@ -69,3 +69,11 @@ void	print(t_mlx *mlx, void *image, int x, int y)
 		mlx_put_image_to_window(mlx->mlx,
 			mlx->mlx_win, image, x * PSIZE, y * PSIZE);
 }
+
+void	struct_init(t_mlx *mlx)
+{
+	mlx->mov = 0;
+	mlx->counter = 0;
+	mlx->c_counter = mlx->stats.c;
+	mlx->f_pos = 0;
+}

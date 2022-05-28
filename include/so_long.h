@@ -103,4 +103,5 @@ void	animate_c(t_mlx *mlx);
 void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos);
 void	print(t_mlx *mlx, void *image, int x, int y);
 void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos);
+void	struct_init(t_mlx *mlx);
 #endif
