@@ -33,7 +33,7 @@ void	animate_c(t_mlx *mlx)
 	if (!speed--)
 	{
 		collect = collect->next;
-		speed = 1000;
+		speed = C_SPEED;
 	}
 }
 
@@ -55,6 +55,6 @@ void	animate_e(t_mlx *mlx)
 	if (!speed--)
 	{
 		exit = exit->next;
-		speed = 500;
+		speed = E_SPEED;
 	}
 }

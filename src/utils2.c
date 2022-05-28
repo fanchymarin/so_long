@@ -34,9 +34,11 @@ void	stop_hook(t_mlx *mlx)
 	if (!check)
 		mlx->mov = 0;
 	else
+	{
 		mlx->counter++;
-	if (mlx->counter % (PSIZE - 1) == 0)
-		printf("%d\n", mlx->counter / (PSIZE - 1));
+		if (mlx->counter % PSIZE == 0)
+			printf("%d\n", mlx->counter / PSIZE);
+	}
 }
 
 int	animate_sprites(t_mlx *mlx)

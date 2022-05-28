@@ -12,12 +12,10 @@
 
 #include "so_long.h"
 
-void	print_next(t_mlx *mlx, t_pos *pos, t_pos new_pos)
+void	print_path(t_mlx *mlx, t_pos *pos, t_pos new_pos)
 {
-	
 	print(mlx, 0, pos->x, pos->y);
 	print(mlx, 0, pos->x + new_pos.x, pos->y + new_pos.y);
-
 }
 
 void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
@@ -29,7 +27,7 @@ void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
 		pos->image = *sprite;
 	while (i++ <= P_SPEED)
 	{
-		print_next(mlx, pos, new_pos);
+		print_path(mlx, pos, new_pos);
 		if (new_pos.x)
 			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, pos->image->content,
 				(pos->x * PSIZE) + pos->pixel_mov, pos->y * PSIZE);
@@ -59,15 +57,23 @@ void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
 			[mlx->p_pos[i].x + new_pos.x] != 'P')
 		{
 			move_player(mlx, sprite, &mlx->p_pos[i], new_pos);
-			if (mlx->p_pos[i].pixel_mov == PSIZE + 1
-				|| mlx->p_pos[i].pixel_mov == ((PSIZE + 1) * -1))
+			if (mlx->p_pos[i].pixel_mov > PSIZE
+				|| mlx->p_pos[i].pixel_mov < PSIZE * -1)
 			{
 				mlx->p_pos[i].pixel_mov = 0;
 				mlx->mov = 0;
-				mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] = '0';
+				if (mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] != 'E')
+					mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] = '0';
 				mlx->p_pos[i].x += new_pos.x;
 				mlx->p_pos[i].y += new_pos.y;
-				mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] = 'P';
+				if (mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] != 'E')
+					mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] = 'P';
+				int	a;
+
+				a = 0;
+				while (mlx->line[a])
+					printf("%s\n", mlx->line[a++]);
+				printf("\n");
 			}
 		}
 		++i;
