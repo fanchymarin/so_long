@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/27 12:32:55 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:33:27 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_mlx
 	char			**f_pos;
 	char			mov;
 	int				counter;
+	int				c_counter;
 }	t_mlx;
 
 char	*concat_str(char *memory, char *buf);

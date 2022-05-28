@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:35:49 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/26 01:01:31 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:39:52 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void	mlx_use(char **line, t_mlx *mlx)
 	mlx_render_sprites(mlx, line, 1, 1);
 	mlx->mov = 0;
 	mlx->counter = 0;
+	mlx->c_counter = mlx->stats.c;
 	mlx_loop_hook(mlx->mlx, animate_sprites, mlx);
 	mlx_key_hook(mlx->mlx_win, key_hook, mlx);
 	mlx_loop(mlx->mlx);

@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/27 12:44:59 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:41:49 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,20 @@ void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
 		pos->image = pos->image->next;
 }
 
+void	reset_pos(t_mlx *mlx, t_pos *pos, t_pos new_pos)
+{
+	pos->pixel_mov = 0;
+	mlx->mov = 0;
+	if (mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'C')
+		mlx->c_counter--;
+	if (mlx->line[pos->y][pos->x] != 'E')
+		mlx->line[pos->y][pos->x] = '0';
+	pos->x += new_pos.x;
+	pos->y += new_pos.y;
+	if (mlx->line[pos->y][pos->x] != 'E')
+		mlx->line[pos->y][pos->x] = 'P';
+}
+
 void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
 {
 	int	i;
@@ -59,22 +73,7 @@ void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
 			move_player(mlx, sprite, &mlx->p_pos[i], new_pos);
 			if (mlx->p_pos[i].pixel_mov > PSIZE
 				|| mlx->p_pos[i].pixel_mov < PSIZE * -1)
-			{
-				mlx->p_pos[i].pixel_mov = 0;
-				mlx->mov = 0;
-				if (mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] != 'E')
-					mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] = '0';
-				mlx->p_pos[i].x += new_pos.x;
-				mlx->p_pos[i].y += new_pos.y;
-				if (mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] != 'E')
-					mlx->line[mlx->p_pos[i].y][mlx->p_pos[i].x] = 'P';
-				int	a;
-
-				a = 0;
-				while (mlx->line[a])
-					printf("%s\n", mlx->line[a++]);
-				printf("\n");
-			}
+				reset_pos(mlx, &mlx->p_pos[i], new_pos);
 		}
 		++i;
 	}
