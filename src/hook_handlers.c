@@ -6,11 +6,36 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/30 20:02:21 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:27:44 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	destroy_images(t_mlx *mlx)
+{
+	mlx_destroy_image(mlx->mlx, mlx->images.f1);
+	mlx_destroy_image(mlx->mlx, mlx->images.f2);
+	mlx_destroy_image(mlx->mlx, mlx->images.f3);
+	mlx_destroy_image(mlx->mlx, mlx->images.r1);
+	mlx_destroy_image(mlx->mlx, mlx->images.r2);
+	mlx_destroy_image(mlx->mlx, mlx->images.r3);
+	mlx_destroy_image(mlx->mlx, mlx->images.dl_c);
+	mlx_destroy_image(mlx->mlx, mlx->images.dr_c);
+	mlx_destroy_image(mlx->mlx, mlx->images.ul_c);
+	mlx_destroy_image(mlx->mlx, mlx->images.ur_c);
+	mlx_destroy_image(mlx->mlx, mlx->images.d_w);
+	mlx_destroy_image(mlx->mlx, mlx->images.l_w);
+	mlx_destroy_image(mlx->mlx, mlx->images.r_w);
+	mlx_destroy_image(mlx->mlx, mlx->images.u_w);
+}
+
+int	end_game(t_mlx *mlx)
+{
+	destroy_images(mlx);
+//	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	return (0);
+}
 
 void	reset_pos(t_mlx *mlx, t_pos *pos, t_pos new_pos)
 {
@@ -69,6 +94,8 @@ int	key_hook(int key, t_mlx *mlx)
 		mlx->mov = 'W';
 	else if (key == KEY_D)
 		mlx->mov = 'D';
+	else if (key == KEY_ESC)
+		end_game(mlx);
 	else
 		return (0);
 	mlx->last_dir = last_dir(key);

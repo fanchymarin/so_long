@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/30 20:03:01 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:38:05 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos);
 void	struct_init(t_mlx *mlx);
 int		last_dir(int key);
 void	stop_hook(t_mlx *mlx);
+int		end_game(t_mlx *mlx);
 #endif
