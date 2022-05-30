@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/30 12:17:19 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:03:01 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	mlx_load_player(t_mlx *mlx, t_list ***player);
 void	store_f_pos(t_mlx *mlx, int x, int y, int id);
 void	*ret_f(t_mlx *mlx, int x, int y);
 int		key_hook(int key, t_mlx *mlx);
-int		animate_sprites(t_mlx *mlx);
+int		loop_hook(t_mlx *mlx);
 void	animate_e(t_mlx *mlx);
 void	animate_c(t_mlx *mlx);
 void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos);
@@ -106,4 +106,5 @@ void	print(t_mlx *mlx, void *image, int x, int y);
 void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos);
 void	struct_init(t_mlx *mlx);
 int		last_dir(int key);
+void	stop_hook(t_mlx *mlx);
 #endif

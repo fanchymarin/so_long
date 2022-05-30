@@ -6,47 +6,11 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/28 18:41:49 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:02:21 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	print_path(t_mlx *mlx, t_pos *pos, t_pos new_pos)
-{
-	print(mlx, 0, pos->x, pos->y);
-	print(mlx, 0, pos->x + new_pos.x, pos->y + new_pos.y);
-	if (mlx->line[pos->y][pos->x] == 'B'
-		|| mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'E')
-		animate_e(mlx);
-	if (mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'C')
-		animate_c(mlx);
-}
-
-void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
-{
-	int	i;
-
-	i = 0;
-	if (!pos->image)
-		pos->image = *sprite;
-	while (i++ <= P_SPEED)
-	{
-		print_path(mlx, pos, new_pos);
-		if (new_pos.x)
-			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, pos->image->content,
-				(pos->x * PSIZE) + pos->pixel_mov, pos->y * PSIZE);
-		else
-			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, pos->image->content,
-				pos->x * PSIZE, (pos->y * PSIZE) + pos->pixel_mov);
-	}
-	if (new_pos.x == 1 || new_pos.y == 1)
-		pos->pixel_mov++;
-	else
-		pos->pixel_mov--;
-	if (pos->pixel_mov % 4 == 0)
-		pos->image = pos->image->next;
-}
 
 void	reset_pos(t_mlx *mlx, t_pos *pos, t_pos new_pos)
 {
@@ -82,7 +46,12 @@ void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
 			move_player(mlx, sprite, &mlx->p_pos[i], new_pos);
 			if (mlx->p_pos[i].pixel_mov > PSIZE
 				|| mlx->p_pos[i].pixel_mov < PSIZE * -1)
+			{
 				reset_pos(mlx, &mlx->p_pos[i], new_pos);
+				print(mlx, 0, mlx->p_pos[i].x, mlx->p_pos[i].y);
+				print(mlx, (**sprite).content,
+					mlx->p_pos[i].x, mlx->p_pos[i].y);
+			}
 		}
 		++i;
 	}
@@ -103,5 +72,25 @@ int	key_hook(int key, t_mlx *mlx)
 	else
 		return (0);
 	mlx->last_dir = last_dir(key);
+	return (0);
+}
+
+
+int	loop_hook(t_mlx *mlx)
+{
+	t_pos		new_pos;
+
+	animate_c(mlx);
+	animate_e(mlx);
+	if (mlx->mov == 'S')
+		stat_player(mlx, mlx->player[0], new_pos = (t_pos){0, 1, 0, 0});
+	else if (mlx->mov == 'A')
+		stat_player(mlx, mlx->player[1], new_pos = (t_pos){-1, 0, 0, 0});
+	else if (mlx->mov == 'W')
+		stat_player(mlx, mlx->player[2], new_pos = (t_pos){0, -1, 0, 0});
+	else if (mlx->mov == 'D')
+		stat_player(mlx, mlx->player[3], new_pos = (t_pos){1, 0, 0, 0});
+	if (mlx->mov)
+		stop_hook(mlx);
 	return (0);
 }

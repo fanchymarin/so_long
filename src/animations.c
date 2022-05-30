@@ -6,11 +6,47 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:30:30 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/27 12:34:59 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:50:28 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	print_path(t_mlx *mlx, t_pos *pos, t_pos new_pos)
+{
+	print(mlx, 0, pos->x, pos->y);
+	print(mlx, 0, pos->x + new_pos.x, pos->y + new_pos.y);
+	if (mlx->line[pos->y][pos->x] == 'B'
+		|| mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'E')
+		animate_e(mlx);
+	if (mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'C')
+		animate_c(mlx);
+}
+
+void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
+{
+	int	i;
+
+	i = 0;
+	if (!pos->image)
+		pos->image = *sprite;
+	while (i++ <= P_SPEED)
+	{
+		print_path(mlx, pos, new_pos);
+		if (new_pos.x)
+			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, pos->image->content,
+				(pos->x * PSIZE) + pos->pixel_mov, pos->y * PSIZE);
+		else
+			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, pos->image->content,
+				pos->x * PSIZE, (pos->y * PSIZE) + pos->pixel_mov);
+	}
+	if (new_pos.x == 1 || new_pos.y == 1)
+		pos->pixel_mov++;
+	else
+		pos->pixel_mov--;
+	if (pos->pixel_mov % 4 == 0)
+		pos->image = pos->image->next;
+}
 
 void	animate_c(t_mlx *mlx)
 {
