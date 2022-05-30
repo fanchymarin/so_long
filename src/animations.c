@@ -50,6 +50,9 @@ void	animate_e(t_mlx *mlx)
 	{
 		print(mlx, 0, mlx->e_pos[i].x, mlx->e_pos[i].y);
 		print(mlx, exit->content, mlx->e_pos[i].x, mlx->e_pos[i].y);
+		if (mlx->line[mlx->e_pos[i].y][mlx->e_pos[i].x] == 'B' && !mlx->mov)
+			print(mlx, (**mlx->player[mlx->last_dir]).content,
+				mlx->e_pos[i].x, mlx->e_pos[i].y);
 		i++;
 	}
 	if (!speed--)

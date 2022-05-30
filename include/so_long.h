@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/28 18:33:27 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/30 12:17:19 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_mlx
 	struct s_pos	*e_pos;
 	char			**f_pos;
 	char			mov;
+	int				last_dir;
 	int				counter;
 	int				c_counter;
 }	t_mlx;
@@ -104,4 +105,5 @@ void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos);
 void	print(t_mlx *mlx, void *image, int x, int y);
 void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos);
 void	struct_init(t_mlx *mlx);
+int		last_dir(int key);
 #endif

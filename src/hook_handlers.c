@@ -16,6 +16,11 @@ void	print_path(t_mlx *mlx, t_pos *pos, t_pos new_pos)
 {
 	print(mlx, 0, pos->x, pos->y);
 	print(mlx, 0, pos->x + new_pos.x, pos->y + new_pos.y);
+	if (mlx->line[pos->y][pos->x] == 'B'
+		|| mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'E')
+		animate_e(mlx);
+	if (mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'C')
+		animate_c(mlx);
 }
 
 void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
@@ -49,12 +54,16 @@ void	reset_pos(t_mlx *mlx, t_pos *pos, t_pos new_pos)
 	mlx->mov = 0;
 	if (mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'C')
 		mlx->c_counter--;
-	if (mlx->line[pos->y][pos->x] != 'E')
+	if (mlx->line[pos->y][pos->x] == 'B')
+		mlx->line[pos->y][pos->x] = 'E';
+	else
 		mlx->line[pos->y][pos->x] = '0';
 	pos->x += new_pos.x;
 	pos->y += new_pos.y;
 	if (mlx->line[pos->y][pos->x] != 'E')
 		mlx->line[pos->y][pos->x] = 'P';
+	else
+		mlx->line[pos->y][pos->x] = 'B';
 }
 
 void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
@@ -91,5 +100,8 @@ int	key_hook(int key, t_mlx *mlx)
 		mlx->mov = 'W';
 	else if (key == KEY_D)
 		mlx->mov = 'D';
+	else
+		return (0);
+	mlx->last_dir = last_dir(key);
 	return (0);
 }
