@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/31 20:00:37 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:27:56 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ int	finish_game(t_mlx *mlx)
 	free(mlx->c_pos);
 	free(mlx->e_pos);
 	free(mlx->p_pos);
-	free(mlx->mlx);
-	free(mlx->player);
 	while (i < 4)
 		destroy_sprites(mlx, mlx->player[i++]);
+	free(mlx->player);
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	free(mlx->mlx);
+	system("leaks --fullStacks so_long");
 	return (0);
 }
 
