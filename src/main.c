@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:43:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/25 19:00:04 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/31 19:45:24 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ int	main(int argc, char **argv)
 	mlx.line = ft_split(map, '\n');
 	mlx.stats = check_map(map, mlx.line);
 	mlx_use(mlx.line, &mlx);
-	free_dp(mlx.line);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/30 21:27:44 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:00:37 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,38 @@ void	destroy_images(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->images.u_w);
 }
 
-int	end_game(t_mlx *mlx)
+void	destroy_sprites(t_mlx *mlx, t_list **sprite)
 {
+	t_list	*tmp;
+
+	while (*sprite)
+	{
+		tmp = (*sprite)->next;
+		mlx_destroy_image(mlx->mlx, (*sprite)->content);
+		free(*sprite);
+		*sprite = tmp;
+	}
+	free(sprite);
+}
+
+int	finish_game(t_mlx *mlx)
+{
+	int	i;
+
+	i = 0;
 	destroy_images(mlx);
-//	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	destroy_sprites(mlx, mlx->collect);
+	destroy_sprites(mlx, mlx->exit);
+	free_dp(mlx->line);
+	free_dp(mlx->f_pos);
+	free(mlx->c_pos);
+	free(mlx->e_pos);
+	free(mlx->p_pos);
+	free(mlx->mlx);
+	free(mlx->player);
+	while (i < 4)
+		destroy_sprites(mlx, mlx->player[i++]);
+	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	return (0);
 }
 
@@ -95,7 +123,7 @@ int	key_hook(int key, t_mlx *mlx)
 	else if (key == KEY_D)
 		mlx->mov = 'D';
 	else if (key == KEY_ESC)
-		end_game(mlx);
+		finish_game(mlx);
 	else
 		return (0);
 	mlx->last_dir = last_dir(key);
