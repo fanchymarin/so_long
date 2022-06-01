@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:58:35 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/20 17:28:09 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:41:13 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	check_characters(char *map, t_map *stats)
 			stats->p++;
 		++map;
 	}
+	stats->p_counter = stats->p;
 	if (!stats->p || !stats->c || !stats->e)
 		map_error_handling(2);
 }

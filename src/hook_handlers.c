@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/31 20:27:56 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:35:23 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	finish_game(t_mlx *mlx)
 	free(mlx->player);
 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	free(mlx->mlx);
-	system("leaks --fullStacks so_long");
+	exit(0);
 	return (0);
 }
 
@@ -91,6 +91,8 @@ void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
 	i = 0;
 	while (i < mlx->stats.p)
 	{
+		while (!mlx->p_pos[i].x && !mlx->p_pos[i].y)
+			++i;
 		print(mlx, 0, mlx->p_pos[i].x, mlx->p_pos[i].y);
 		print(mlx, (**sprite).content, mlx->p_pos[i].x, mlx->p_pos[i].y);
 		if (mlx->line[mlx->p_pos[i].y + new_pos.y][mlx->p_pos[i].x
@@ -130,7 +132,6 @@ int	key_hook(int key, t_mlx *mlx)
 	mlx->last_dir = last_dir(key);
 	return (0);
 }
-
 
 int	loop_hook(t_mlx *mlx)
 {

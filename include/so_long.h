@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/31 16:28:04 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:38:57 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_map
 {
 	int	e;
 	int	p;
+	int	p_counter;
 	int	c;
 	int	height;
 	int	width;
