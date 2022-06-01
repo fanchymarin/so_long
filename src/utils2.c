@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 13:14:14 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/30 20:04:30 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/01 17:34:19 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ void	stop_hook(t_mlx *mlx)
 	{
 		mlx->counter++;
 		if (mlx->counter % PSIZE == 0)
-			printf("%d\n", mlx->counter / PSIZE);
+		{
+			mlx_render_walls(mlx, mlx->stats.width - 1,
+				mlx->stats.height - 1, PSIZE);
+			mlx_string_put(mlx->mlx, mlx->mlx_win, mlx->stats.width
+				* PSIZE / 2, mlx->stats.height * PSIZE, 16777215,
+				ft_itoa(mlx->counter / PSIZE));
+		}
 	}
 }
 

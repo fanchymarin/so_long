@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/01 16:38:57 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/01 17:31:30 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ void	struct_init(t_mlx *mlx);
 int		last_dir(int key);
 void	stop_hook(t_mlx *mlx);
 int		finish_game(t_mlx *mlx);
+void	mlx_render_walls(t_mlx *mlx, int width, int height, int x);
 
 #endif

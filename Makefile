@@ -2,7 +2,7 @@ NAME = so_long
 CFLAGS = -Wall -Wextra -Werror -Iinclude -Iminilibx -O3
 MLXFLAGS = -Lminilibx -lmlx -framework OpenGL -framework AppKit
 KEYS = KEY_S=1 KEY_A=0 KEY_W=13 KEY_D=2 KEY_ESC=53
-SPEED = C_SPEED=10 E_SPEED=5 P_SPEED=0 END_SPEED=500
+SPEED = C_SPEED=10 E_SPEED=5 P_SPEED=0 END_SPEED=20
 
 UNAME = $(shell uname)
 ifeq ($(UNAME), Linux)

@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/01 16:35:23 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/01 17:14:36 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,10 @@ void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
 	i = 0;
 	while (i < mlx->stats.p)
 	{
-		while (!mlx->p_pos[i].x && !mlx->p_pos[i].y)
+		while (!mlx->p_pos[i].x && !mlx->p_pos[i].y && i != mlx->stats.p)
 			++i;
+		if (i == mlx->stats.p)
+			break ;
 		print(mlx, 0, mlx->p_pos[i].x, mlx->p_pos[i].y);
 		print(mlx, (**sprite).content, mlx->p_pos[i].x, mlx->p_pos[i].y);
 		if (mlx->line[mlx->p_pos[i].y + new_pos.y][mlx->p_pos[i].x
