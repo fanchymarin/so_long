@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/02 13:33:19 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:35:08 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int	finish_game(t_mlx *mlx __attribute__((unused)))
 	return (0);
 }
 
-void	reset_pos(t_mlx *mlx, t_pos *pos, t_pos new_pos)
+void	reset_pos(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
 {
+	pos->image = 0;
 	pos->pixel_mov = 0;
 	mlx->mov = 0;
 	if (mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'C')
@@ -34,34 +35,29 @@ void	reset_pos(t_mlx *mlx, t_pos *pos, t_pos new_pos)
 		mlx->line[pos->y][pos->x] = 'P';
 	else
 		mlx->line[pos->y][pos->x] = 'B';
+	print(mlx, 0, pos->x, pos->y);
+	print(mlx, (**sprite).content, pos->x, pos->y);
 }
 
-void	stat_player(t_mlx *mlx, t_list **sprite, t_pos new_pos)
+void	stat_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
 {
 	int	i;
 
 	i = 0;
 	while (i < mlx->stats.p)
 	{
-		while (!mlx->p_pos[i].x && !mlx->p_pos[i].y && i != mlx->stats.p)
+		while (!pos[i].x && !pos[i].y && i != mlx->stats.p)
 			++i;
 		if (i == mlx->stats.p)
 			break ;
-		print(mlx, 0, mlx->p_pos[i].x, mlx->p_pos[i].y);
-		print(mlx, (**sprite).content, mlx->p_pos[i].x, mlx->p_pos[i].y);
-		if (mlx->line[mlx->p_pos[i].y + new_pos.y][mlx->p_pos[i].x
-			+ new_pos.x] != '1' && mlx->line[mlx->p_pos[i].y + new_pos.y]
-			[mlx->p_pos[i].x + new_pos.x] != 'P')
+		print(mlx, 0, pos[i].x, pos[i].y);
+		print(mlx, (**sprite).content, pos[i].x, pos[i].y);
+		if (mlx->line[pos[i].y + new_pos.y][pos[i].x + new_pos.x] != '1'
+			&& mlx->line[pos[i].y + new_pos.y][pos[i].x + new_pos.x] != 'P')
 		{
-			move_player(mlx, sprite, &mlx->p_pos[i], new_pos);
-			if (mlx->p_pos[i].pixel_mov > PSIZE
-				|| mlx->p_pos[i].pixel_mov < PSIZE * -1)
-			{
-				reset_pos(mlx, &mlx->p_pos[i], new_pos);
-				print(mlx, 0, mlx->p_pos[i].x, mlx->p_pos[i].y);
-				print(mlx, (**sprite).content,
-					mlx->p_pos[i].x, mlx->p_pos[i].y);
-			}
+			move_player(mlx, sprite, &pos[i], new_pos);
+			if (pos[i].pixel_mov > PSIZE || pos[i].pixel_mov < PSIZE * -1)
+				reset_pos(mlx, sprite, &pos[i], new_pos);
 		}
 		++i;
 	}
@@ -94,13 +90,13 @@ int	loop_hook(t_mlx *mlx)
 	animate_c(mlx);
 	animate_e(mlx);
 	if (mlx->mov == 'S')
-		stat_player(mlx, mlx->player[0], new_pos = (t_pos){0, 1, 0, 0});
+		stat_player(mlx, mlx->player[0], mlx->p_pos, new_pos = (t_pos){0, 1, 0, 0});
 	else if (mlx->mov == 'A')
-		stat_player(mlx, mlx->player[1], new_pos = (t_pos){-1, 0, 0, 0});
+		stat_player(mlx, mlx->player[1], mlx->p_pos, new_pos = (t_pos){-1, 0, 0, 0});
 	else if (mlx->mov == 'W')
-		stat_player(mlx, mlx->player[2], new_pos = (t_pos){0, -1, 0, 0});
+		stat_player(mlx, mlx->player[2], mlx->p_pos, new_pos = (t_pos){0, -1, 0, 0});
 	else if (mlx->mov == 'D')
-		stat_player(mlx, mlx->player[3], new_pos = (t_pos){1, 0, 0, 0});
+		stat_player(mlx, mlx->player[3], mlx->p_pos, new_pos = (t_pos){1, 0, 0, 0});
 	if (mlx->mov)
 		stop_hook(mlx);
 	return (0);

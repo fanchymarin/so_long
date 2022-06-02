@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:30:30 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/01 16:40:15 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:35:08 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,20 +95,6 @@ void	animate_c(t_mlx *mlx)
 	}
 }
 
-struct s_pos	*find_player(t_mlx *mlx, struct s_pos e_pos)
-{
-	int	i;
-
-	i = 0;
-	while (i < mlx->stats.p)
-	{
-		if (mlx->p_pos[i].y == e_pos.y && mlx->p_pos[i].x == e_pos.x)
-			break ;
-		++i;
-	}
-	return (&mlx->p_pos[i]);
-}
-
 void	animate_e(t_mlx *mlx)
 {
 	static t_list	*exit = 0;
@@ -117,8 +103,8 @@ void	animate_e(t_mlx *mlx)
 
 	if (!exit)
 		exit = (*mlx->exit);
-	i = 0;
-	while (i < mlx->stats.e)
+	i = -1;
+	while (++i < mlx->stats.e)
 	{
 		print(mlx, 0, mlx->e_pos[i].x, mlx->e_pos[i].y);
 		print(mlx, exit->content, mlx->e_pos[i].x, mlx->e_pos[i].y);
@@ -130,7 +116,6 @@ void	animate_e(t_mlx *mlx)
 			else
 				exit_player(mlx, find_player(mlx, mlx->e_pos[i]));
 		}
-		i++;
 	}
 	if (!speed--)
 	{
