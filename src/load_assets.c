@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:21:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/25 19:01:58 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:53:27 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	malloc_sprites(t_mlx *mlx)
 	i = 0;
 	mlx->player = (t_list ***) malloc(sizeof(t_list **) * 4);
 	while (i < 4)
-	{
-		mlx->player[i] = (t_list **) malloc(sizeof(t_list *));
-		*mlx->player[i++] = 0;
-	}
+		mlx->player[i++] = (t_list **) ft_calloc(sizeof(t_list *), 1);
+	i = 0;
+	mlx->slime = (t_list ***) malloc(sizeof(t_list **) * 2);
+	while (i < 2)
+		mlx->slime[i++] = (t_list **) ft_calloc(sizeof(t_list *), 1);
 	mlx->collect = (t_list **) malloc(sizeof(t_list *));
 	*mlx->collect = 0;
 	mlx->exit = (t_list **) malloc(sizeof(t_list *));
@@ -33,6 +34,8 @@ void	malloc_sprites(t_mlx *mlx)
 			mlx->stats.e);
 	mlx->p_pos = (struct s_pos *) ft_calloc(sizeof(struct s_pos),
 			mlx->stats.p);
+	mlx->s_pos = (struct s_pos *) ft_calloc(sizeof(struct s_pos),
+			mlx->stats.s);
 }
 
 void	mlx_load_images(void *mlx, struct s_images *images)
@@ -77,6 +80,29 @@ void	mlx_load_sprites(t_mlx *mlx, t_list **collect, t_list **exit)
 				"./assets/e/e1.xpm", &a, &b)));
 	ft_lstadd_back(exit, ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
 				"./assets/e/e2.xpm", &a, &b)));
+}
+
+void	mlx_load_slime(t_mlx *mlx, t_list ***slime)
+{
+	int	a;
+	int	b;
+
+	ft_lstadd_back(slime[0], ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
+				"./assets/s/l1.xpm", &a, &b)));
+	ft_lstadd_back(slime[0], ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
+				"./assets/s/l2.xpm", &a, &b)));
+	ft_lstadd_back(slime[0], ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
+				"./assets/s/l3.xpm", &a, &b)));
+	ft_lstadd_back(slime[0], ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
+				"./assets/s/l4.xpm", &a, &b)));
+	ft_lstadd_back(slime[1], ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
+				"./assets/s/r1.xpm", &a, &b)));
+	ft_lstadd_back(slime[1], ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
+				"./assets/s/r2.xpm", &a, &b)));
+	ft_lstadd_back(slime[1], ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
+				"./assets/s/r3.xpm", &a, &b)));
+	ft_lstadd_back(slime[1], ft_lstnew(mlx_xpm_file_to_image(mlx->mlx,
+				"./assets/s/r4.xpm", &a, &b)));
 }
 
 void	mlx_load_player(t_mlx *mlx, t_list ***player)

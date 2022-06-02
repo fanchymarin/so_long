@@ -16,7 +16,7 @@ SRCDIR = src/
 OBJDIR = obj/
 
 SRCFILES = main.c check_map.c utils.c utils2.c utils3.c mlx_use.c \
-		   load_assets.c hook_handlers.c animations.c
+		   load_assets.c hook_handlers.c animations.c slime_ai.c
 OBJFILES = $(SRCFILES:.c=.o)
 
 SRC = $(addprefix $(SRCDIR), $(SRCFILES))

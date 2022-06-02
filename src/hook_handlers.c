@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/02 17:35:08 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/02 19:15:09 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,19 @@ int	loop_hook(t_mlx *mlx)
 
 	animate_c(mlx);
 	animate_e(mlx);
+	slime_ai(mlx);
 	if (mlx->mov == 'S')
-		stat_player(mlx, mlx->player[0], mlx->p_pos, new_pos = (t_pos){0, 1, 0, 0});
+		stat_player(mlx, mlx->player[0], mlx->p_pos,
+			new_pos = (t_pos){0, 1, 0, 0});
 	else if (mlx->mov == 'A')
-		stat_player(mlx, mlx->player[1], mlx->p_pos, new_pos = (t_pos){-1, 0, 0, 0});
+		stat_player(mlx, mlx->player[1], mlx->p_pos,
+			new_pos = (t_pos){-1, 0, 0, 0});
 	else if (mlx->mov == 'W')
-		stat_player(mlx, mlx->player[2], mlx->p_pos, new_pos = (t_pos){0, -1, 0, 0});
+		stat_player(mlx, mlx->player[2], mlx->p_pos,
+			new_pos = (t_pos){0, -1, 0, 0});
 	else if (mlx->mov == 'D')
-		stat_player(mlx, mlx->player[3], mlx->p_pos, new_pos = (t_pos){1, 0, 0, 0});
+		stat_player(mlx, mlx->player[3], mlx->p_pos,
+			new_pos = (t_pos){1, 0, 0, 0});
 	if (mlx->mov)
 		stop_hook(mlx);
 	return (0);

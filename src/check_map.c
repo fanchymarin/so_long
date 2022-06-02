@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:58:35 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/01 16:41:13 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/02 19:15:28 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ int	calculate_size(char **line, int which)
 
 void	check_characters(char *map, t_map *stats)
 {
-	*stats = (t_map){.e = 0, .p = 0, .c = 0};
 	while (*map)
 	{
-		if (*map != '1' && *map != '0' && *map != 'C'
-			&& *map != 'E' && *map != 'P' && *map != '\n')
+		if (*map != '1' && *map != '0' && *map != 'C' && *map != 'E'
+			&& *map != 'P' && *map != 'S' && *map != '\n')
 			map_error_handling(0);
 		if (*map == 'E')
 			stats->e++;
@@ -44,6 +43,8 @@ void	check_characters(char *map, t_map *stats)
 			stats->c++;
 		else if (*map == 'P')
 			stats->p++;
+		else if (*map == 'S')
+			stats->s++;
 		++map;
 	}
 	stats->p_counter = stats->p;
@@ -92,6 +93,7 @@ t_map	check_map(char *map, char **line)
 {
 	t_map	stats;
 
+	stats = (t_map){0};
 	check_characters(map, &stats);
 	stats.height = calculate_size(line, 1);
 	stats.width = calculate_size(line, 0);

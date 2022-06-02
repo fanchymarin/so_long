@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:35:49 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/05/31 20:30:41 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:57:02 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,9 @@ void	mlx_render_rocks(t_mlx *mlx, char **line, int x, int y)
 
 void	mlx_render_sprites(t_mlx *mlx, char **line, int x, int y)
 {
-	int	counter[3];
+	int	*counter;
 
-	counter[0] = 0;
-	counter[1] = 0;
-	counter[2] = 0;
+	counter = (int *) ft_calloc(sizeof(int), 4);
 	while (line[y + 1])
 	{
 		x = 1;
@@ -111,10 +109,13 @@ void	mlx_render_sprites(t_mlx *mlx, char **line, int x, int y)
 				save_pos(&mlx->p_pos[counter[2]++], x, y);
 				print(mlx, (**mlx->player[0]).content, x, y);
 			}
+			else if (line[y][x] == 'S')
+				save_pos(&mlx->s_pos[counter[3]++], x, y);
 			++x;
 		}
 		++y;
 	}
+	free(counter);
 }
 
 void	mlx_use(char **line, t_mlx *mlx)
@@ -129,6 +130,7 @@ void	mlx_use(char **line, t_mlx *mlx)
 	mlx_load_images(mlx->mlx, &mlx->images);
 	mlx_load_sprites(mlx, mlx->collect, mlx->exit);
 	mlx_load_player(mlx, mlx->player);
+	mlx_load_slime(mlx, mlx->slime);
 	mlx_render_floor(mlx, mlx->stats.width, mlx->stats.height);
 	mlx_render_walls(mlx, mlx->stats.width - 1, mlx->stats.height - 1, PSIZE);
 	mlx_render_rocks(mlx, line, 1, 1);

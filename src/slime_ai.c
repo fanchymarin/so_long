@@ -6,26 +6,31 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:22:08 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/02 16:02:59 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:38:33 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	animate_s(t_mlx *mlx, void **sprite, t_pos *pos)
+void	animate_s(t_mlx *mlx, t_list **sprite, t_pos *pos)
 {
 	int			i;
-	static int	mov = 0;
+	static int	speed = 15;
 
 	i = 0;
+	if (!pos->image)
+		pos->image = *sprite;
 	while (i < mlx->stats.s)
 	{
-		print(mlx, 0, pos->x, pos->y);
-		print(mlx, sprite[mov], pos->x, pos->y);
+		print(mlx, 0, pos[i].x, pos[i].y);
+		print(mlx, pos->image->content, pos[i].x, pos[i].y);
 		++i;
 	}
-	if (++mov == 4)
-		mov = 0;
+	if (!speed--)
+	{
+		pos->image = pos->image->next;
+		speed = 15;
+	}
 }
 
 void	slime_ai(t_mlx *mlx)
