@@ -1,5 +1,5 @@
 /* XPM */
-static char *e[] = {
+static char *exit_png[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 2 1 ",
 "  c None",

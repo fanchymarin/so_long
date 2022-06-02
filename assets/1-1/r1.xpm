@@ -1,5 +1,5 @@
 /* XPM */
-static char *r1[] = {
+static char *rock1_png[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 124 2 ",
 "   c None",

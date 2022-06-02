@@ -1,7 +1,7 @@
 /* XPM */
-static char *f3[] = {
+static char *grass3_png[] = {
 /* columns rows colors chars-per-pixel */
-"64 64 8 1",
+"64 64 8 1 ",
 "  c #636917",
 ". c #656C17",
 "X c #72751B",
