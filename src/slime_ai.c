@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:22:08 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/02 18:38:33 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/03 19:58:20 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	slime_ai(t_mlx *mlx)
 {
 	static int	i = 0;
 
-	animate_s(mlx, mlx->slime[i], mlx->s_pos);
+	if (mlx->stats.s)
+		animate_s(mlx, mlx->slime[i], mlx->s_pos);
 }
