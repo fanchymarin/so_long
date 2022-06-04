@@ -2,13 +2,13 @@ NAME = so_long
 CFLAGS = -Wall -Wextra -Werror -Iinclude -Iminilibx -O3
 MLXFLAGS = -Lminilibx -lmlx -framework OpenGL -framework AppKit
 KEYS = KEY_S=1 KEY_A=0 KEY_W=13 KEY_D=2 KEY_ESC=53
-SPEED = C_SPEED=10 E_SPEED=5 P_SPEED=0 END_SPEED=20
+SPEED = C_SPEED=10 E_SPEED=5 P_SPEED=0 END_SPEED=20 S_SPEED=15
 
 UNAME = $(shell uname)
 ifeq ($(UNAME), Linux)
 	MLXFLAGS = -lmlx -lXext -lX11 -lm -lbsd
 	KEYS = KEY_S=115 KEY_A=97 KEY_W=119 KEY_D=100 KEY_ESC=65307
-	SPEED = C_SPEED=1000 E_SPEED=500 P_SPEED=200 END_SPEED=5000
+	SPEED = C_SPEED=1000 E_SPEED=500 P_SPEED=200 END_SPEED=5000 S_SPEED=1500
 endif
 DEFINE = $(addprefix -D, $(KEYS) $(SPEED))
 

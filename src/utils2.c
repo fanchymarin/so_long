@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 13:14:14 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/02 16:35:15 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/04 15:46:52 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void	struct_init(t_mlx *mlx)
 	mlx->counter = 0;
 	mlx->c_counter = mlx->stats.c;
 	mlx->f_pos = 0;
+	mlx->stat = 0;
 }

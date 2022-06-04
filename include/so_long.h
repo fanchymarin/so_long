@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/02 18:06:01 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/04 15:44:36 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_mlx
 	int				last_dir;
 	int				counter;
 	int				c_counter;
+	int				stat;
 }	t_mlx;
 
 char	*concat_str(char *memory, char *buf);
@@ -97,6 +98,7 @@ void	mlx_load_images(void *mlx, struct s_images *images);
 void	mlx_load_sprites(t_mlx *mlx, t_list **collect, t_list **exit);
 void	mlx_load_slime(t_mlx *mlx, t_list ***slime);
 void	mlx_load_player(t_mlx *mlx, t_list ***player);
+void	mlx_render_floor(t_mlx *mlx, int width, int height);
 int		animate_sprites(t_mlx *mlx);
 void	save_pos(struct s_pos *pos, int x, int y);
 void	malloc_sprites(t_mlx *mlx);

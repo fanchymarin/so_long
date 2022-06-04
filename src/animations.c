@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:30:30 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/02 17:35:08 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/04 15:47:13 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	exit_player(t_mlx *mlx, struct s_pos *p_pos)
 		mlx->stats.p_counter--;
 	}
 	if (!mlx->stats.p_counter)
+	{
+		mlx->stat = 1;
 		finish_game(mlx);
+	}
 }
 
 void	print_path(t_mlx *mlx, t_pos *pos, t_pos new_pos)

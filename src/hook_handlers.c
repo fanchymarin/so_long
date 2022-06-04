@@ -6,14 +6,21 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/02 19:15:09 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/04 16:13:06 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	finish_game(t_mlx *mlx __attribute__((unused)))
+int	finish_game(t_mlx *mlx)
 {
+	if (mlx->stat)
+	{
+		printf("\033[1;32m");
+		printf("[GAME OVER] Map finished in %d moves.\n", mlx->counter / PSIZE);
+	}
+	else
+		printf("[GAME OVER] You lose.\n");
 	exit(0);
 	return (0);
 }

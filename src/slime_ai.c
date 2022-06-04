@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:22:08 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/03 19:58:20 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/04 12:54:07 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	animate_s(t_mlx *mlx, t_list **sprite, t_pos *pos)
 {
 	int			i;
-	static int	speed = 15;
+	static int	speed = S_SPEED;
 
 	i = 0;
 	if (!pos->image)
@@ -29,7 +29,7 @@ void	animate_s(t_mlx *mlx, t_list **sprite, t_pos *pos)
 	if (!speed--)
 	{
 		pos->image = pos->image->next;
-		speed = 15;
+		speed = S_SPEED;
 	}
 }
 
