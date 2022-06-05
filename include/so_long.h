@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/04 15:44:36 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/05 17:18:49 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_map
 
 }	t_map;
 
-struct s_images
+typedef struct s_images
 {
 	void	*f1;
 	void	*f2;
@@ -54,7 +54,7 @@ struct s_images
 	void	*l_w;
 	void	*r_w;
 	void	*u_w;
-};
+}	t_images;
 
 typedef struct s_pos
 {
@@ -62,29 +62,37 @@ typedef struct s_pos
 	int		y;
 	int		pixel_mov;
 	t_list	*image;
+	int		pos;
 }	t_pos;
+
+typedef struct s_new_pos
+{
+	int	x;
+	int	y;
+}	t_new_pos;
 
 typedef struct s_mlx
 {
-	void			*mlx;
-	void			*mlx_win;
-	char			**line;
-	t_map			stats;
-	struct s_images	images;
-	t_list			***player;
-	struct s_pos	*p_pos;
-	t_list			**collect;
-	struct s_pos	*c_pos;
-	t_list			**exit;
-	struct s_pos	*e_pos;
-	t_list			***slime;
-	struct s_pos	*s_pos;
-	char			**f_pos;
-	char			mov;
-	int				last_dir;
-	int				counter;
-	int				c_counter;
-	int				stat;
+	void		*mlx;
+	void		*mlx_win;
+	char		**line;
+	t_map		stats;
+	t_images	images;
+	t_list		***player;
+	t_pos		*p_pos;
+	t_list		**collect;
+	t_pos		*c_pos;
+	t_list		**exit;
+	t_pos		*e_pos;
+	t_list		***slime;
+	t_pos		*s_pos;
+	char		**f_pos;
+	char		mov;
+	int			last_dir;
+	int			counter;
+	int			c_counter;
+	int			stat;
+	int			*s_speed;	
 }	t_mlx;
 
 char	*concat_str(char *memory, char *buf);
@@ -108,15 +116,15 @@ int		key_hook(int key, t_mlx *mlx);
 int		loop_hook(t_mlx *mlx);
 void	animate_e(t_mlx *mlx);
 void	animate_c(t_mlx *mlx);
-void	stat_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos);
+void	stat_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_new_pos new_pos);
 void	print(t_mlx *mlx, void *image, int x, int y);
-void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos);
+void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_new_pos new_pos);
 void	struct_init(t_mlx *mlx);
 int		last_dir(int key);
 void	stop_hook(t_mlx *mlx);
 int		finish_game(t_mlx *mlx);
 void	mlx_render_walls(t_mlx *mlx, int width, int height, int x);
 t_pos	*find_player(t_mlx *mlx, t_pos e_pos);
-void	slime_ai(t_mlx *mlx);
+void	slime_ai(t_mlx *mlx, t_list ***slime, t_pos *pos);
 
 #endif

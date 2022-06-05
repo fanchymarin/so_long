@@ -6,13 +6,13 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:30:30 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/04 15:47:13 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/05 17:20:46 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	exit_player(t_mlx *mlx, struct s_pos *p_pos)
+void	exit_player(t_mlx *mlx, t_pos *p_pos)
 {
 	static int	i = 0;
 	static int	speed = END_SPEED;
@@ -37,7 +37,7 @@ void	exit_player(t_mlx *mlx, struct s_pos *p_pos)
 	}
 }
 
-void	print_path(t_mlx *mlx, t_pos *pos, t_pos new_pos)
+void	print_path(t_mlx *mlx, t_pos *pos, t_new_pos new_pos)
 {
 	print(mlx, 0, pos->x, pos->y);
 	print(mlx, 0, pos->x + new_pos.x, pos->y + new_pos.y);
@@ -48,7 +48,7 @@ void	print_path(t_mlx *mlx, t_pos *pos, t_pos new_pos)
 		animate_c(mlx);
 }
 
-void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
+void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_new_pos new_pos)
 {
 	int	i;
 

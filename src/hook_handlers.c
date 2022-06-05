@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:34:26 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/04 16:13:06 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/05 17:18:07 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@ int	finish_game(t_mlx *mlx)
 		printf("[GAME OVER] Map finished in %d moves.\n", mlx->counter / PSIZE);
 	}
 	else
+	{
+		printf("\033[1;31m");
 		printf("[GAME OVER] You lose.\n");
+	}
 	exit(0);
 	return (0);
 }
 
-void	reset_pos(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
+void	reset_pos(t_mlx *mlx, t_list **sprite, t_pos *pos, t_new_pos new_pos)
 {
 	pos->image = 0;
 	pos->pixel_mov = 0;
@@ -46,7 +49,7 @@ void	reset_pos(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
 	print(mlx, (**sprite).content, pos->x, pos->y);
 }
 
-void	stat_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_pos new_pos)
+void	stat_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_new_pos new_pos)
 {
 	int	i;
 
@@ -92,23 +95,18 @@ int	key_hook(int key, t_mlx *mlx)
 
 int	loop_hook(t_mlx *mlx)
 {
-	t_pos		new_pos;
-
 	animate_c(mlx);
 	animate_e(mlx);
-	slime_ai(mlx);
+	if (mlx->stats.s)
+		slime_ai(mlx, mlx->slime, mlx->s_pos);
 	if (mlx->mov == 'S')
-		stat_player(mlx, mlx->player[0], mlx->p_pos,
-			new_pos = (t_pos){0, 1, 0, 0});
+		stat_player(mlx, mlx->player[0], mlx->p_pos, (t_new_pos){0, 1});
 	else if (mlx->mov == 'A')
-		stat_player(mlx, mlx->player[1], mlx->p_pos,
-			new_pos = (t_pos){-1, 0, 0, 0});
+		stat_player(mlx, mlx->player[1], mlx->p_pos, (t_new_pos){-1, 0});
 	else if (mlx->mov == 'W')
-		stat_player(mlx, mlx->player[2], mlx->p_pos,
-			new_pos = (t_pos){0, -1, 0, 0});
+		stat_player(mlx, mlx->player[2], mlx->p_pos, (t_new_pos){0, -1});
 	else if (mlx->mov == 'D')
-		stat_player(mlx, mlx->player[3], mlx->p_pos,
-			new_pos = (t_pos){1, 0, 0, 0});
+		stat_player(mlx, mlx->player[3], mlx->p_pos, (t_new_pos){1, 0});
 	if (mlx->mov)
 		stop_hook(mlx);
 	return (0);

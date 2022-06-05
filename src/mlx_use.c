@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:35:49 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/04 15:45:57 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/05 13:13:45 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	mlx_render_floor(t_mlx *mlx, int width, int height)
 		x = 0;
 		while (x <= width - 1)
 		{
-			r = ft_rand();
-			if (r % 2 == 0)
+			r = ft_rand() % 3;
+			if (r == 0)
 				store_f_pos(mlx, x, y, 1);
-			else if (r % 3 == 0)
+			else if (r == 1)
 				store_f_pos(mlx, x, y, 3);
-			else
+			else if (r == 2)
 				store_f_pos(mlx, x, y, 2);
 			x++;
 		}
@@ -76,12 +76,12 @@ void	mlx_render_rocks(t_mlx *mlx, char **line, int x, int y)
 		{
 			if (line[y][x] == '1')
 			{
-				r = ft_rand();
-				if (r % 2 == 0)
+				r = ft_rand() % 3;
+				if (r == 0)
 					print(mlx, mlx->images.r1, x, y);
-				else if (r % 3 == 0)
+				else if (r == 1)
 					print(mlx, mlx->images.r2, x, y);
-				else
+				else if (r == 2)
 					print(mlx, mlx->images.r3, x, y);
 			}
 			++x;
