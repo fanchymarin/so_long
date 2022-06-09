@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:21:46 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/09 13:33:45 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:18:18 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,12 @@ void	move_slime(t_mlx *mlx, t_pos *pos, t_new_pos npos)
 		pos->pixel_mov++;
 	else
 		pos->pixel_mov--;
-	if (mlx->line[pos->y + npos.y][pos->x + npos.x] == 'P'
-		&& pos->pixel_mov > PSIZE / 2)
-		finish_game(mlx);
+	if (mlx->line[pos->y + npos.y][pos->x + npos.x] == 'P')
+	{
+		print(mlx, (*mlx->player[mlx->last_dir])->content, pos->x + npos.x, pos->y + npos.y);
+		if (pos->pixel_mov > PSIZE / 2 || pos->pixel_mov < PSIZE / -2)
+			finish_game(mlx);
+	}
 	if (pos->pixel_mov > PSIZE || pos->pixel_mov < PSIZE * -1)
 	{
 		mlx->line[pos->y][pos->x] = '0';

@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/09 13:33:20 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:12:09 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,10 @@ int			last_dir(int key);
 void		stop_hook(t_mlx *mlx);
 int			finish_game(t_mlx *mlx);
 void		mlx_render_walls(t_mlx *mlx, int width, int height, int x);
-t_pos		*find_player(t_mlx *mlx, t_pos e_pos);
+t_pos		*find_character(t_mlx *mlx, t_pos e_pos, int character);
 void		slime_ai(t_mlx *mlx, t_list ***slime, t_pos *pos);
 int			*init_speed(t_mlx *mlx);
 t_new_pos	random_dir(int *pos);
+void		still_slime(t_mlx *mlx, t_list ***slime, t_pos *s_pos);
 
 #endif

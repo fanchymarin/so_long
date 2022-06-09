@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:30:30 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/05 17:20:46 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:16:28 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	print_path(t_mlx *mlx, t_pos *pos, t_new_pos new_pos)
 		animate_e(mlx);
 	if (mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'C')
 		animate_c(mlx);
+	if (mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'S')
+		still_slime(mlx, mlx->slime, find_character(mlx, (t_pos){pos->x + new_pos.x, pos->y + new_pos.y, 0, 0, 0}, 1));
 }
 
 void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_new_pos new_pos)
@@ -69,6 +71,8 @@ void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_new_pos new_pos)
 		pos->pixel_mov++;
 	else
 		pos->pixel_mov--;
+	if (mlx->line[pos->y + new_pos.y][pos->x + new_pos.x] == 'S' && (pos->pixel_mov > PSIZE / 2 || pos->pixel_mov < PSIZE / -2))
+		finish_game(mlx);
 	if (pos->pixel_mov % 4 == 0)
 		pos->image = pos->image->next;
 }
@@ -117,7 +121,7 @@ void	animate_e(t_mlx *mlx)
 				print(mlx, (**mlx->player[mlx->last_dir]).content,
 					mlx->e_pos[i].x, mlx->e_pos[i].y);
 			else
-				exit_player(mlx, find_player(mlx, mlx->e_pos[i]));
+				exit_player(mlx, find_character(mlx, mlx->e_pos[i], 0));
 		}
 	}
 	if (!speed--)

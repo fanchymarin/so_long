@@ -6,24 +6,36 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:46:08 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/09 13:32:04 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:07:45 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_pos	*find_player(t_mlx *mlx, t_pos e_pos)
+t_pos	*find_character(t_mlx *mlx, t_pos e_pos, int character)
 {
-	int	i;
+	int		i;
+	int		counter;
+	t_pos	*pos;
 
-	i = 0;
-	while (i < mlx->stats.p)
+	if (!character)
 	{
-		if (mlx->p_pos[i].y == e_pos.y && mlx->p_pos[i].x == e_pos.x)
+		pos = mlx->p_pos;
+		counter = mlx->stats.p;
+	}
+	else
+	{
+		pos = mlx->s_pos;
+		counter = mlx->stats.s;
+	}
+	i = 0;
+	while (i < counter)
+	{
+		if (pos[i].y == e_pos.y && pos[i].x == e_pos.x)
 			break ;
 		++i;
 	}
-	return (&mlx->p_pos[i]);
+	return (&pos[i]);
 }
 
 int	*init_speed(t_mlx *mlx)
