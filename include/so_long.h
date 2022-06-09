@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 12:25:53 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/08 16:07:39 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:33:20 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,36 +94,40 @@ typedef struct s_mlx
 	int			stat;
 }	t_mlx;
 
-char	*concat_str(char *memory, char *buf);
-t_map	check_map(char *map, char **line);
-void	free_dp(char **line);
-void	map_error_handling(int error);
-void	mlx_use(char **line, t_mlx *mlx);
-void	error_handling(int error);
-int		ft_rand(void);
-void	mlx_load_images(void *mlx, struct s_images *images);
-void	mlx_load_sprites(t_mlx *mlx, t_list **collect, t_list **exit);
-void	mlx_load_slime(t_mlx *mlx, t_list ***slime);
-void	mlx_load_player(t_mlx *mlx, t_list ***player);
-void	mlx_render_floor(t_mlx *mlx, int width, int height);
-int		animate_sprites(t_mlx *mlx);
-void	save_pos(struct s_pos *pos, int x, int y);
-void	malloc_sprites(t_mlx *mlx);
-void	store_f_pos(t_mlx *mlx, int x, int y, int id);
-void	*ret_f(t_mlx *mlx, int x, int y);
-int		key_hook(int key, t_mlx *mlx);
-int		loop_hook(t_mlx *mlx);
-void	animate_e(t_mlx *mlx);
-void	animate_c(t_mlx *mlx);
-void	stat_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_new_pos new_pos);
-void	print(t_mlx *mlx, void *image, int x, int y);
-void	move_player(t_mlx *mlx, t_list **sprite, t_pos *pos, t_new_pos new_pos);
-void	struct_init(t_mlx *mlx);
-int		last_dir(int key);
-void	stop_hook(t_mlx *mlx);
-int		finish_game(t_mlx *mlx);
-void	mlx_render_walls(t_mlx *mlx, int width, int height, int x);
-t_pos	*find_player(t_mlx *mlx, t_pos e_pos);
-void	slime_ai(t_mlx *mlx, t_list ***slime, t_pos *pos);
+char		*concat_str(char *memory, char *buf);
+t_map		check_map(char *map, char **line);
+void		free_dp(char **line);
+void		map_error_handling(int error);
+void		mlx_use(char **line, t_mlx *mlx);
+void		error_handling(int error);
+int			ft_rand(void);
+void		mlx_load_images(void *mlx, struct s_images *images);
+void		mlx_load_sprites(t_mlx *mlx, t_list **collect, t_list **exit);
+void		mlx_load_slime(t_mlx *mlx, t_list ***slime);
+void		mlx_load_player(t_mlx *mlx, t_list ***player);
+void		mlx_render_floor(t_mlx *mlx, int width, int height);
+int			animate_sprites(t_mlx *mlx);
+void		save_pos(struct s_pos *pos, int x, int y);
+void		malloc_sprites(t_mlx *mlx);
+void		store_f_pos(t_mlx *mlx, int x, int y, int id);
+void		*ret_f(t_mlx *mlx, int x, int y);
+int			key_hook(int key, t_mlx *mlx);
+int			loop_hook(t_mlx *mlx);
+void		animate_e(t_mlx *mlx);
+void		animate_c(t_mlx *mlx);
+void		stat_player(t_mlx *mlx, t_list **sprite, t_pos *pos,
+				t_new_pos new_pos);
+void		print(t_mlx *mlx, void *image, int x, int y);
+void		move_player(t_mlx *mlx, t_list **sprite, t_pos *pos,
+				t_new_pos new_pos);
+void		struct_init(t_mlx *mlx);
+int			last_dir(int key);
+void		stop_hook(t_mlx *mlx);
+int			finish_game(t_mlx *mlx);
+void		mlx_render_walls(t_mlx *mlx, int width, int height, int x);
+t_pos		*find_player(t_mlx *mlx, t_pos e_pos);
+void		slime_ai(t_mlx *mlx, t_list ***slime, t_pos *pos);
+int			*init_speed(t_mlx *mlx);
+t_new_pos	random_dir(int *pos);
 
 #endif
