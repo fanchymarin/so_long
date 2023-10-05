@@ -1,5 +1,9 @@
 # so_long - ✅Grade 125/100
 
+<p align="center">
+  <img src="https://github.com/fanchymarin/so_long/assets/102818788/8c61eb24-e97f-49b7-9981-a57a805b1388" />
+</p>
+
 #### Grade rating
 - ✅ = Okay project
 - ⭐ = Outstanding project
