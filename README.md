@@ -1,7 +1,7 @@
 # so_long - ✅Grade 125/100
 
 <p align="center">
-  <img src="https://github.com/fanchymarin/so_long/assets/102818788/8c61eb24-e97f-49b7-9981-a57a805b1388" />
+  <img src="https://github.com/fanchymarin/so_long/assets/102818788/16107ced-81b4-4b32-8f9a-978f158061fc" />
 </p>
 
 #### Grade rating
