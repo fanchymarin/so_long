@@ -1,5 +1,9 @@
 # so_long - ✅Grade 125/100
 
+#### Grade rating
+- ✅ = Okay project
+- ⭐ = Outstanding project
+
 ## Table of Contents
 - [Game Overview](#game-overview)
 - [Installation](#installation)
