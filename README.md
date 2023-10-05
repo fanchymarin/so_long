@@ -19,13 +19,13 @@ To play the game, follow these installation instructions:
 2. Compile the source files using the provided Makefile.
 
 ~~~shell
-  make
+make
 ~~~
 
 4. Run the game with a map description file ending in the `.ber` extension as a parameter.
 
 ~~~shell
-  ./so_long your_map.ber
+./so_long your_map.ber
 ~~~
 
 ## How to Play
