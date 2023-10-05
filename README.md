@@ -17,13 +17,17 @@ To play the game, follow these installation instructions:
 
 1. Clone the repository to your local machine.
 2. Compile the source files using the provided Makefile.
-~~~zsh
+
+~~~shell
   make
 ~~~
+
 4. Run the game with a map description file ending in the `.ber` extension as a parameter.
-~~~zsh
+
+~~~shell
   ./so_long your_map.ber
 ~~~
+
 ## How to Play
 - Your objective is to collect all the "C" (collectible) items on the map and then reach the "E" (exit) while making the fewest possible moves.
 - Avoid running into "1" (wall) tiles, as you cannot move through them.
