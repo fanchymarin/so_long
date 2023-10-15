@@ -62,7 +62,7 @@ make
 - Pressing ESC or clicking the window's close button will exit the game cleanly.
 
 ## Bonus Features
-- While the main game adheres to the provided rules, we've added some bonus features to enhance the gaming experience:
+- While the main game adheres to the provided rules, some bonus features to enhance the gaming experience has been added:
 - **Enemy Patrol**: Touching an enemy patrol results in the player losing the game.
 - **Sprite Animation**: Enjoy animated sprites that bring the game world to life.
 - **On-Screen Movement Count**: See your movement count directly on the screen for convenience.
